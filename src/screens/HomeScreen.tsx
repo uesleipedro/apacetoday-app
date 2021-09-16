@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     View,
     StyleSheet,
@@ -23,17 +23,21 @@ const Home = () => {
         <SafeAreaView style={styles.container}>
             <StatusBar backgroundColor='#2c5288' />
             <View style={styles.header}>
-                <Image
-                    style={styles.tinyLogo}
-                    source={require('../assets/rocket-white.png')}
-                />
+
+                <View style={styles.logoContainer}>
+                    <Image
+                        style={styles.tinyLogo}
+                        source={require('../assets/rocket-white.png')}
+                    />
+                </View>
+
                 <View style={styles.titleContainer}>
                     <Text style={styles.title}>
                         Salve, Salve, amigos
-                </Text>
+                    </Text>
                     <Text style={styles.subtitle}>
                         da astronomia em todo o mundo!
-                </Text>
+                    </Text>
                 </View>
             </View>
             <View style={styles.body}>
@@ -58,7 +62,8 @@ const Home = () => {
 
                 <TouchableOpacity
                     style={styles.handleLaunchsGreetings}
-                    onPress={() => { navigation.navigate('Author') }}>
+                    onPress={() => { navigation.navigate('Author') }}
+                >
                     <Text style={styles.textLaunchsGreetings}>
                         Sobre o Autor
                     </Text>
@@ -72,12 +77,13 @@ const Home = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#2c5288'
+        backgroundColor: '#2c5288',
+        height: windowHeight
     },
     header: {
         justifyContent: 'center',
         alignItems: 'center',
-        height: '40%',
+        height: windowHeight * 0.4,
     },
     image: {
         flex: 1,
@@ -87,9 +93,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    tinyLogo: {
+    logoContainer: {
+        width: '100%',
         height: 175,
-        width: 130
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    tinyLogo: {
+        height: windowHeight * 0.2, //175,
+        width: windowWidth * 0.3,//130
+        resizeMode: 'cover'
     },
     title: {
         color: '#FFF',
@@ -116,7 +129,7 @@ const styles = StyleSheet.create({
     handleLaunchsGreetings: {
         flexDirection: 'row',
         backgroundColor: '#2c5288',
-        height: 49,
+        height: windowHeight * 0.07,
         width: windowWidth * .8,
         borderRadius: 30,
         alignItems: 'center',
@@ -127,21 +140,16 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold'
     },
-    launchsGreetingsLogo: {
-        height: 38,
-        width: 28,
-        marginHorizontal: 10
-    },
     containerOutros: {
         flexDirection: 'row',
         justifyContent: 'center',
-        width: '100%',
+        width: windowWidth,
     },
     item1: {
         backgroundColor: '#2c5288',
         borderRadius: 20,
         width: windowWidth * .8,
-        height: 142,
+        height: windowHeight * .2,//142,
         alignItems: 'center',
         justifyContent: 'center'
     },

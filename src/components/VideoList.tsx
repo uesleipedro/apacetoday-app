@@ -8,6 +8,7 @@ import {
 import axios from 'axios';
 
 import { CardVideo } from './CardVideo';
+import { Load } from './Load';
 
 const SPACING = 10;
 const apiKey = 'AIzaSyBmMqVQ63yH-mC8fPp483Oqll7wof3Ps4E';
@@ -20,12 +21,13 @@ export default function VideoList() {
     const [videos, setVideo] = useState([]);
     const [nextPageToken, setNextPageToken] = useState('');
     const [loadingMore, setLoadingMore] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     async function fetchVideos() {
         const url = urlApi + nextPageToken + rest;
         setLoadingMore(true);
         await axios.get(url)
-            .then(response => {   
+            .then(response => {
                 setVideo([...videos, ...response.data.items]);
                 setNextPageToken('&pageToken=' + response.data.nextPageToken + '&');
             })
@@ -33,6 +35,7 @@ export default function VideoList() {
                 console.error(error.message);
             })
         setLoadingMore(false);
+        setLoading(false);
     }
 
     function handleFetchMoreVideos(distance: number) {
@@ -46,6 +49,9 @@ export default function VideoList() {
     useEffect(() => {
         fetchVideos();
     }, []);
+
+    if (loading)
+        return <Load />
 
     return (
 

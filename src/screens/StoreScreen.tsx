@@ -14,7 +14,7 @@ const url = 'https://www.spacetodaystore.com/';
 function StoreScreen() {
     const webViewRef = useRef(null);
     const navigation = useNavigation();
-    
+
     const goback = () => {
         webViewRef.current.goBack();
     };

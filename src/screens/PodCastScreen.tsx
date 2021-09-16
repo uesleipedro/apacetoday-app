@@ -9,6 +9,7 @@ import {
 import axios from 'axios';
 
 import { CardPodCast } from '../components/CardPodCast';
+import { Load } from '../components/Load';
 
 const SPACING = 10;
 const urlApi = `https://api.spreaker.com/v2/shows/4251645/episodes`
@@ -17,6 +18,7 @@ export default function PodCastScreen() {
 
     const [episodios, setEpisodios] = useState([]);
     const [loadingMore, setLoadingMore] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     async function fetchEpisodios() {
 
@@ -29,6 +31,7 @@ export default function PodCastScreen() {
                 console.error(error.message);
             })
         setLoadingMore(false);
+        setLoading(false);
     }
 
     function handleFetchMoreEpisodios(distance: number) {
@@ -42,6 +45,10 @@ export default function PodCastScreen() {
     useEffect(() => {
         fetchEpisodios();
     }, []);
+
+    if (loading)
+        return <Load />
+
     return (
         <>
 

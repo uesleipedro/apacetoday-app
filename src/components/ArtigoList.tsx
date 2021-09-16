@@ -4,24 +4,26 @@ import {
     FlatList,
     ActivityIndicator,
 } from 'react-native';
-import axios from 'axios';
+
+import { apiScraping } from '../services/api';
 
 import { CardArtigo } from './CardArtigo';
+import { Load } from './Load';
 
 const SPACING = 10;
-
-const urlApi = `https://spacetoday.herokuapp.com/articles/`
 
 export default function ArtigoList() {
 
     const [artigos, setArtigos] = useState([]);
     const [page, setPage] = useState(1);
     const [loadingMore, setLoadingMore] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     async function fetchArtigos() {
 
         setLoadingMore(true);
-        await axios.get(urlApi + page)
+
+        await apiScraping.get(`/articles/` + page)
             .then(response => {
                 setArtigos([...artigos, ...response.data.data]);
                 setPage(oldValue => oldValue + 1);
@@ -29,7 +31,9 @@ export default function ArtigoList() {
             .catch(function (error) {
                 console.error(error.message);
             })
+
         setLoadingMore(false);
+        setLoading(false);
     }
 
     function handleFetchMoreArtigos(distance: number) {
@@ -43,6 +47,9 @@ export default function ArtigoList() {
     useEffect(() => {
         fetchArtigos();
     }, []);
+
+    if (loading)
+        return <Load />
 
     return (
 

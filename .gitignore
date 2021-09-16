@@ -71,3 +71,5 @@ buck-out/
 .prettierrc.js
 .watchmanconfig
 
+__tests__/
+

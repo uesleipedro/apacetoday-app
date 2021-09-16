@@ -11,6 +11,8 @@ import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/AntDesign';
 
+import { Load } from './Load';
+
 import { CardNews } from './CardNews';
 
 const SPACING = 10;
@@ -22,6 +24,7 @@ export default function ArtigoList() {
     const [news, setNews] = useState([]);
     const [page, setPage] = useState(1);
     const [loadingMore, setLoadingMore] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     const navigation = useNavigation();
 
@@ -37,6 +40,7 @@ export default function ArtigoList() {
                 console.error(error.message);
             })
         setLoadingMore(false);
+        setLoading(false);
     }
 
     function handleFetchMoreNews(distance: number) {
@@ -50,6 +54,9 @@ export default function ArtigoList() {
     useEffect(() => {
         fetchNews();
     }, []);
+
+    if (loading)
+        return <Load />
 
     return (
 
