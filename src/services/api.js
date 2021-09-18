@@ -1,7 +1,8 @@
 import axios from 'axios';
+import config from '../../config.json';
 
 export const apiScraping = axios.create({
-    baseURL: 'https://spacetoday.herokuapp.com/',
+    baseURL: config.API_SPACETODAY,
     headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json;charset=UTF-8' 
@@ -9,7 +10,7 @@ export const apiScraping = axios.create({
 })
 
 export const apiYoutube = axios.create({
-    baseURL: 'https://www.googleapis.com/youtube/v3/',
+    baseURL: config.API_YOUTUBE,
     headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json;charset=UTF-8' 

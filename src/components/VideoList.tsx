@@ -6,11 +6,11 @@ import {
     ActivityIndicator,
 } from 'react-native';
 
+import config from '../../config.json';
+
 import { apiYoutube } from '../services/api';
 import { CardVideo } from './CardVideo';
 import { Load } from './Load';
-
-const SPACING = 10;
 
 export default function VideoList() {
 
@@ -29,7 +29,7 @@ export default function VideoList() {
                 part: 'snippet',
                 channelId: 'UC_Fk7hHbl7vv_7K8tYqJd5A',
                 maxResults: 11,
-                key: 'AIzaSyBmMqVQ63yH-mC8fPp483Oqll7wof3Ps4E'
+                key: config.GOOGLE_API_KEY
             }
         })
             .then(response => {
@@ -66,7 +66,7 @@ export default function VideoList() {
                 data={videos}
                 keyExtractor={item => String(item.id.videoId)}
                 contentContainerStyle={{
-                    padding: SPACING,
+                    padding: 10,
                 }}
                 renderItem={({ item }) => (
                     <CardVideo

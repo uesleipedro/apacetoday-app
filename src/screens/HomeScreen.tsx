@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
     View,
     StyleSheet,
@@ -36,7 +36,7 @@ const Home = () => {
                         Salve, Salve, amigos
                     </Text>
                     <Text style={styles.subtitle}>
-                        da astronomia em todo o mundo!
+                        da astronomia em todo o mundo! 
                     </Text>
                 </View>
             </View>
