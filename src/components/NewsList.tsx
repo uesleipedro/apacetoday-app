@@ -7,17 +7,12 @@ import {
     TouchableOpacity,
     Text
 } from 'react-native';
-import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/AntDesign';
 
 import { Load } from './Load';
-
+import { apiScraping } from '../services/api';
 import { CardNews } from './CardNews';
-
-const SPACING = 10;
-
-const urlApi = `https://spacetoday.herokuapp.com/externalArticles/`
 
 export default function ArtigoList() {
 
@@ -31,7 +26,8 @@ export default function ArtigoList() {
     async function fetchNews() {
 
         setLoadingMore(true);
-        await axios.get(urlApi + page)
+
+        await apiScraping.get(`/externalArticles/` + page)
             .then(response => {
                 setNews([...news, ...response.data.data]);
                 setPage(oldValue => oldValue + 1);
@@ -39,6 +35,7 @@ export default function ArtigoList() {
             .catch(function (error) {
                 console.error(error.message);
             })
+
         setLoadingMore(false);
         setLoading(false);
     }
@@ -106,26 +103,26 @@ export default function ArtigoList() {
 }
 const styles = StyleSheet.create({
 
-header: {
-    flexDirection: 'row',
-    height: 40,
-    backgroundColor: '#2c5288',
-    alignItems: 'center',
-},
-textHeader: {
-    color: '#FFF',
-    fontWeight: 'bold',
-    fontSize: 18
-},
-containerIcon: {
-    paddingLeft: 10,
-    justifyContent: 'center',
-    height: '100%',
-    width: '20%'
-},
-containerText: {
-    justifyContent: 'center',
-    height: '100%',
-    width: '80%'
-}
+    header: {
+        flexDirection: 'row',
+        height: 40,
+        backgroundColor: '#2c5288',
+        alignItems: 'center',
+    },
+    textHeader: {
+        color: '#FFF',
+        fontWeight: 'bold',
+        fontSize: 18
+    },
+    containerIcon: {
+        paddingLeft: 10,
+        justifyContent: 'center',
+        height: '100%',
+        width: '20%'
+    },
+    containerText: {
+        justifyContent: 'center',
+        height: '100%',
+        width: '80%'
+    }
 })

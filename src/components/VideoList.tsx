@@ -5,16 +5,12 @@ import {
     StyleSheet,
     ActivityIndicator,
 } from 'react-native';
-import axios from 'axios';
 
+import { apiYoutube } from '../services/api';
 import { CardVideo } from './CardVideo';
 import { Load } from './Load';
 
 const SPACING = 10;
-const apiKey = 'AIzaSyBmMqVQ63yH-mC8fPp483Oqll7wof3Ps4E';
-
-const urlApi = `https://www.googleapis.com/youtube/v3/search?`
-const rest = `order=date&part=snippet&channelId=UC_Fk7hHbl7vv_7K8tYqJd5A&maxResults=11&key=${apiKey}`
 
 export default function VideoList() {
 
@@ -24,16 +20,26 @@ export default function VideoList() {
     const [loading, setLoading] = useState(true);
 
     async function fetchVideos() {
-        const url = urlApi + nextPageToken + rest;
         setLoadingMore(true);
-        await axios.get(url)
+
+        await apiYoutube.get('/search', {
+            params: {
+                pageToken: nextPageToken,
+                order: 'date',
+                part: 'snippet',
+                channelId: 'UC_Fk7hHbl7vv_7K8tYqJd5A',
+                maxResults: 11,
+                key: 'AIzaSyBmMqVQ63yH-mC8fPp483Oqll7wof3Ps4E'
+            }
+        })
             .then(response => {
                 setVideo([...videos, ...response.data.items]);
-                setNextPageToken('&pageToken=' + response.data.nextPageToken + '&');
+                setNextPageToken(response.data.nextPageToken);
             })
             .catch(function (error) {
                 console.error(error.message);
             })
+
         setLoadingMore(false);
         setLoading(false);
     }

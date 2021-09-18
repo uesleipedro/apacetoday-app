@@ -10,8 +10,6 @@ import { apiScraping } from '../services/api';
 import { CardArtigo } from './CardArtigo';
 import { Load } from './Load';
 
-const SPACING = 10;
-
 export default function ArtigoList() {
 
     const [artigos, setArtigos] = useState([]);
@@ -59,7 +57,7 @@ export default function ArtigoList() {
                 data={artigos}
                 keyExtractor={item => String(item.id)}
                 contentContainerStyle={{
-                    padding: SPACING,
+                    padding: 10,
                 }}
                 renderItem={({ item, index }) => (
                     <CardArtigo
