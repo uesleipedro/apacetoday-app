@@ -4,13 +4,10 @@ import {
     FlatList,
     ActivityIndicator,
 } from 'react-native';
-
+ 
 import { apiScraping } from '../services/api';
-
 import { CardArtigo } from './CardArtigo';
 import { Load } from './Load';
-
-const SPACING = 10;
 
 export default function ArtigoList() {
 
@@ -59,7 +56,7 @@ export default function ArtigoList() {
                 data={artigos}
                 keyExtractor={item => String(item.id)}
                 contentContainerStyle={{
-                    padding: SPACING,
+                    padding: 10,
                 }}
                 renderItem={({ item, index }) => (
                     <CardArtigo
