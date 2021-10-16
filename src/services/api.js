@@ -15,4 +15,12 @@ export const apiYoutube = axios.create({
         'Accept': 'application/json',
         'Content-Type': 'application/json;charset=UTF-8' 
     },
+}) 
+
+export const apiLocal = axios.create({
+    baseURL: config.API_LOCAL,
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json;charset=UTF-8' 
+    },
 })

@@ -8,7 +8,8 @@ import {
 
 import config from '../../config.json';
 
-import { apiYoutube } from '../services/api';
+// import { apiScraping } from '../services/api';
+import { apiScraping } from '../services/api';
 import { CardVideo } from './CardVideo';
 import { Load } from './Load';
 
@@ -16,25 +17,17 @@ export default function VideoList() {
 
     const [videos, setVideo] = useState([]);
     const [nextPageToken, setNextPageToken] = useState('');
+    const [page, setPage] = useState(1);
     const [loadingMore, setLoadingMore] = useState(false);
     const [loading, setLoading] = useState(true);
 
     async function fetchVideos() {
         setLoadingMore(true);
 
-        await apiYoutube.get('/search', {
-            params: {
-                pageToken: nextPageToken,
-                order: 'date',
-                part: 'snippet',
-                channelId: 'UC_Fk7hHbl7vv_7K8tYqJd5A',
-                maxResults: 11,
-                key: config.GOOGLE_API_KEY
-            }
-        })
+        await apiScraping.get(`/videos/` + page)
             .then(response => {
-                setVideo([...videos, ...response.data.items]);
-                setNextPageToken(response.data.nextPageToken);
+               setVideo([...videos, ...response.data.videos]);
+               setPage(oldValue => oldValue + 1);
             })
             .catch(function (error) {
                 console.error(error.message);
@@ -64,14 +57,14 @@ export default function VideoList() {
         <View style={{ flex: 1, backgroundColor: '#f8f8ff' }}>
             <FlatList
                 data={videos}
-                keyExtractor={item => String(item.id.videoId)}
+                keyExtractor={item => String(item._id)}
                 contentContainerStyle={{
                     padding: 10,
                 }}
                 renderItem={({ item }) => (
                     <CardVideo
-                        title={item.snippet.title}
-                        idVideo={item.id.videoId}
+                        title={item.title}
+                        idVideo={item.link}
                     />
                 )}
                 showsVerticalScrollIndicator={false}

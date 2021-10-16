@@ -109,7 +109,8 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
         paddingTop: 5,
-        textAlign: 'center'
+        textAlign: 'center',
+        fontFamily: 'Glegoo-regular.ttf'
     },
     subtitle: {
         color: '#FFF',
