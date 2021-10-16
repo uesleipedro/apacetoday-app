@@ -131,7 +131,7 @@ android {
     }
 
     defaultConfig {
-        // applicationId "com.teste"
+        // applicationId "com.spacetoday"
         applicationId "com.spacetoday"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion

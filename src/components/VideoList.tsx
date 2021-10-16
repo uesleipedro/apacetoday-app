@@ -9,7 +9,7 @@ import {
 import config from '../../config.json';
 
 // import { apiScraping } from '../services/api';
-import { apiScraping } from '../services/api';
+import { apiLocal } from '../services/api';
 import { CardVideo } from './CardVideo';
 import { Load } from './Load';
 
@@ -24,7 +24,7 @@ export default function VideoList() {
     async function fetchVideos() {
         setLoadingMore(true);
 
-        await apiScraping.get(`/videos/` + page)
+        await apiLocal.get(`/videos/` + page)
             .then(response => {
                setVideo([...videos, ...response.data.videos]);
                setPage(oldValue => oldValue + 1);

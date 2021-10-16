@@ -28,12 +28,12 @@ export const CardNews = ({ data }: CardNewsProps) => {
 
             <View style={styles.container}>
                 <View style={{
-                    width: '30%',
-                    backgroundColor: '#2C5288',
+                    width: '20%',
+                    //backgroundColor: '#2C5288',
                     alignItems: 'center',
                     justifyContent: 'center',
                 }}>
-                    <Image
+                    {/* <Image
                         source={Images.article}
                         resizeMode='contain'
                         style={{
@@ -42,12 +42,32 @@ export const CardNews = ({ data }: CardNewsProps) => {
                             opacity: .5,
                             tintColor: '#FFF'
                         }}
-                    />
+                    /> */}
+
+                    <View
+                        style={{
+                            width: 2,
+                            height: '100%',
+                            backgroundColor: '#cfd8dc',
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                        }}
+                    >
+                        <View
+                            style={{
+                                position: 'relative',
+                                width: 10,
+                                height: 10,
+                                borderRadius: 10,
+                                backgroundColor: '#2C5288',
+                            }}
+                        ></View>
+                    </View>
                 </View>
                 <View style={{
                     paddingLeft: 10,
                     paddingRight: 10,
-                    width: '70%',
+                    width: '75%',
                     paddingTop: 20,
                     justifyContent: 'space-between'
                 }}>
@@ -73,6 +93,7 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: .3,
         shadowRadius: 20,
+        height: 100,
     },
     title: {
         opacity: .5,
