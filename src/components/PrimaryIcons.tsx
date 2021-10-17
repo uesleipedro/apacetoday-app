@@ -6,6 +6,8 @@ import {
     Image
 } from 'react-native';
 
+import colors from '../assets/styles/colors';
+
 const Icones = ({ focused, name, img }) => {
     return (
         <View style={styles.container}>
@@ -15,10 +17,20 @@ const Icones = ({ focused, name, img }) => {
                 style={{
                     width: 30,
                     height: 30,
-                    tintColor: focused ? '#598CD4' : '#748c94',
+                    tintColor: focused ? colors.gold_text : colors.light_text,
                 }}
             />
-            <Text style={styles.title}>{name}</Text>
+            <Text
+                style={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    fontSize: 12,
+                    color: focused ? colors.gold_text : colors.light_text,
+                    fontWeight: 'bold',
+                    opacity: 0.5,
+                    marginTop: 2
+                }}
+            >{name}</Text>
         </View>
     );
 }
@@ -32,7 +44,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         fontSize: 12,
-        color: '#000',
+        color: colors.light_text,
         fontWeight: 'bold',
         opacity: 0.5,
         marginTop: 2

@@ -13,6 +13,8 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import { Load } from './Load';
 import { apiScraping } from '../services/api';
 import { CardNews } from './CardNews';
+import { color } from 'react-native-reanimated';
+import colors from '../assets/styles/colors';
 
 export default function ArtigoList() {
 
@@ -57,7 +59,7 @@ export default function ArtigoList() {
 
     return (
 
-        <View style={{ flex: 1, backgroundColor: '#f2f6f7' }}>
+        <View style={{ flex: 1, backgroundColor: colors.light_gray }}>
 
             <View style={styles.header}>
                 <TouchableOpacity
@@ -65,7 +67,7 @@ export default function ArtigoList() {
                     onPress={() => {
                         navigation.navigate('Home')
                     }} >
-                    <Icon name='arrowleft' size={30} color='#FFF' />
+                    <Icon name='arrowleft' size={30} color={colors.gold_text} />
                 </TouchableOpacity>
 
                 <View style={styles.containerText}>
@@ -106,7 +108,7 @@ const styles = StyleSheet.create({
     header: {
         flexDirection: 'row',
         height: 40,
-        backgroundColor: '#2c5288',
+        backgroundColor: colors.light_gray,
         alignItems: 'center',
     },
     textHeader: {

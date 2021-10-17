@@ -10,6 +10,7 @@ import axios from 'axios';
 
 import { CardPodCast } from '../components/CardPodCast';
 import { Load } from '../components/Load';
+import colors from '../assets/styles/colors';
 
 const SPACING = 10;
 const urlApi = `https://api.spreaker.com/v2/shows/4251645/episodes`
@@ -52,8 +53,8 @@ export default function PodCastScreen() {
     return (
         <>
 
-            <StatusBar backgroundColor='#2c5288' />
-            <SafeAreaView style={{ flex: 1, backgroundColor: '#f8f8ff' }}>
+            <StatusBar backgroundColor={colors.dark_gray} />
+            <SafeAreaView style={{ flex: 1, backgroundColor: colors.light_gray }}>
 
                 <FlatList
                     data={episodios}

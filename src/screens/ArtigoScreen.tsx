@@ -6,6 +6,7 @@ import {
 } from 'react-native';
 
 import ArtigoList from '../components/ArtigoList';
+import colors from '../assets/styles/colors';
 
 export default function ArtigoScreen() {
   return (
@@ -13,7 +14,7 @@ export default function ArtigoScreen() {
       showsVerticalScrollIndicator={false}
       style={styles.container}
     >
-      <StatusBar backgroundColor='#2c5288' />
+      <StatusBar backgroundColor='#1a1a1a' />
 
       <ArtigoList />
     </SafeAreaView>

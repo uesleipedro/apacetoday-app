@@ -12,6 +12,9 @@ import { WebView } from 'react-native-webview';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
 
+import { color } from 'react-native-reanimated';
+import colors from '../assets/styles/colors';
+
 function LoadingIndicatorView() {
     return <ActivityIndicator color='#009b88' size='large' />
 }
@@ -22,7 +25,7 @@ function NewsViewScreen({ route }) {
 
     return (
         <SafeAreaView style={styles.container}>
-            <StatusBar backgroundColor='#2c5288' />
+            <StatusBar backgroundColor={colors.dark_gray} />
 
             <View style={styles.header}>
                 <TouchableOpacity
@@ -30,7 +33,7 @@ function NewsViewScreen({ route }) {
                     onPress={() => {
                         navigation.navigate('NewsList')
                     }} >
-                    <Icon name='arrowleft' size={30} color='#FFF' />
+                    <Icon name='arrowleft' size={30} color={colors.gold_text} />
                 </TouchableOpacity>
 
                 <View style={styles.containerText}>
@@ -56,11 +59,11 @@ const styles = StyleSheet.create({
     header: {
         flexDirection: 'row',
         height: 40,
-        backgroundColor: '#2c5288',
+        backgroundColor: colors.dark_gray,
         alignItems: 'center'
     },
     textHeader: {
-        color: '#FFF',
+        color: colors.gold_text,
         fontWeight: 'bold',
         fontSize: 18
     },

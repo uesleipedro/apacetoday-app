@@ -10,6 +10,9 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/AntDesign';
 
+import colors from '../assets/styles/colors';
+import { color } from 'react-native-reanimated';
+
 export default function Author() {
     const navigation = useNavigation<any>();
 
@@ -22,7 +25,7 @@ export default function Author() {
                     onPress={() => {
                         navigation.navigate('Home')
                     }} >
-                    <Icon name='arrowleft' size={30} color='#FFF' />
+                    <Icon name='arrowleft' size={30} color={colors.gold_text} />
                 </TouchableOpacity>
 
                 <View style={styles.containerText}>
@@ -55,16 +58,16 @@ export default function Author() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#2c5288',
+        backgroundColor: colors.light_gray,
     },
     header: {
         flexDirection: 'row',
         height: 40,
-        backgroundColor: '#2c5288',
+        backgroundColor: colors.dark_gray,
         alignItems: 'center',
     },
     textHeader: {
-        color: '#FFF',
+        color: colors.light_text,
         fontWeight: 'bold',
         fontSize: 18
     },
@@ -82,7 +85,7 @@ const styles = StyleSheet.create({
     body: {
         borderTopRightRadius: 35,
         borderTopLeftRadius: 35,
-        backgroundColor: '#FFF',
+        backgroundColor: colors.light_gray,
         height: '100%',
         alignItems: 'center',
         paddingTop: 30,
@@ -96,19 +99,21 @@ const styles = StyleSheet.create({
     author: {
         fontSize: 20,
         fontWeight: 'bold',
-        opacity: .7,
+        color: colors.gold_text,
+        opacity: 0.9,
         textAlign: 'center',
         marginTop: 10
     },
     formacao: {
         fontSize: 14,
         fontWeight: 'bold',
-        opacity: .4,
+        color: colors.gold_text,
+        opacity: .6,
         textAlign: 'center',
     },
     description: {
         fontSize: 15,
-        opacity: .5,
+        color: colors.light_text,
         textAlign: 'justify',
         marginTop: 20,
         marginHorizontal: 20,

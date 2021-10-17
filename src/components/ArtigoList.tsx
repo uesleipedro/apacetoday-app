@@ -9,6 +9,7 @@ import { apiScraping } from '../services/api';
 
 import { CardArtigo } from './CardArtigo';
 import { Load } from './Load';
+import colors from '../assets/styles/colors';
 
 export default function ArtigoList() {
 
@@ -51,7 +52,7 @@ export default function ArtigoList() {
 
     return (
 
-        <View style={{ flex: 1, backgroundColor: '#f8f8ff' }}>
+        <View style={{ flex: 1, backgroundColor: colors.light_gray }}>
 
             <FlatList
                 data={artigos}

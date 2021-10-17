@@ -8,10 +8,10 @@ import {
 
 import config from '../../config.json';
 
-// import { apiScraping } from '../services/api';
-import { apiLocal } from '../services/api';
+import { apiScraping } from '../services/api';
 import { CardVideo } from './CardVideo';
 import { Load } from './Load';
+import colors from '../assets/styles/colors';
 
 export default function VideoList() {
 
@@ -24,7 +24,7 @@ export default function VideoList() {
     async function fetchVideos() {
         setLoadingMore(true);
 
-        await apiLocal.get(`/videos/` + page)
+        await apiScraping.get(`/videos/` + page)
             .then(response => {
                setVideo([...videos, ...response.data.videos]);
                setPage(oldValue => oldValue + 1);
@@ -54,7 +54,7 @@ export default function VideoList() {
 
     return (
 
-        <View style={{ flex: 1, backgroundColor: '#f8f8ff' }}>
+        <View style={{ flex: 1, backgroundColor: colors.light_gray }}>
             <FlatList
                 data={videos}
                 keyExtractor={item => String(item._id)}

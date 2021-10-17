@@ -9,6 +9,8 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/AntDesign';
 
+import colors from '../assets/styles/colors';
+
 const url = 'https://www.spacetodaystore.com/';
 
 function StoreScreen() {
@@ -21,7 +23,7 @@ function StoreScreen() {
 
     return (
         <SafeAreaView style={styles.container}>
-            <StatusBar backgroundColor='#2c5288' />
+            <StatusBar backgroundColor={colors.dark_gray} />
 
             <WebView
                 ref={webViewRef}

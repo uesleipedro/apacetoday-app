@@ -6,6 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 
+import colors from '../assets/styles/colors';
 import Icones from '../components/PrimaryIcons';
 import Images from '../assets';
 import Home from '../screens/HomeScreen';
@@ -83,7 +84,7 @@ const Tabs = () => {
                     showLabel: false,
                     style: {
                         height: 60,
-                        backgroundColor: '#FFF'
+                        backgroundColor: colors.dark_gray
                     }
                 }}
             >

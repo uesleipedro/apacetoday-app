@@ -13,6 +13,8 @@ import {
 import { ptBR } from 'date-fns/locale'
 import { useNavigation } from '@react-navigation/native';
 
+import colors from '../assets/styles/colors';
+
 interface CardPodCastProps {
     data: {
         title: string;
@@ -42,15 +44,14 @@ export const CardPodCast = ({ data }: CardPodCastProps) => {
             <View style={styles.container}>
 
                 <View style={styles.titleContainer}>
-                    <Text style={styles.title}>
-                        {data.title}
-                    </Text>
                     <View style={styles.time}>
                         <Text style={styles.textTime}>
                             {formattedDate}
                         </Text>
                     </View>
-
+                    <Text style={styles.title}>
+                        {data.title}
+                    </Text>
                 </View>
 
                 <View style={styles.imageContainer}>
@@ -73,16 +74,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         height: 140,
         marginBottom: 5,
-        backgroundColor: '#FFF',
-        borderRadius: 3,
-        shadowColor: '#000',
-        shadowOffset: {
-            width: 0,
-            height: 10
-        },
-        shadowOpacity: .3,
-        shadowRadius: 20,
-        elevation: 3,
+        backgroundColor: colors.light_gray,
     },
     imageContainer: {
         justifyContent: 'center',
@@ -94,7 +86,7 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
     },
     title: {
-        opacity: .6,
+        color: colors.light_text,
         fontSize: 15,
         fontWeight: '700',
     },
@@ -106,12 +98,10 @@ const styles = StyleSheet.create({
         paddingBottom: 5
     },
     time: {
-        position: 'absolute',
-        bottom: 2,
-        marginLeft: 5
+        marginBottom: 5
     },
     textTime: {
-        opacity: .4,
+        color: colors.gold_text,
         fontSize: 12,
         fontWeight: 'bold',
     }

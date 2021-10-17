@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 
 import VideoList from '../components/VideoList';
+import colors from '../assets/styles/colors';
 
 export default function VideosScreen() {
   return (
@@ -15,7 +16,7 @@ export default function VideosScreen() {
         showsVerticalScrollIndicator={false}
         style={styles.container}
       >
-        <StatusBar backgroundColor='#2c5288' />
+        <StatusBar backgroundColor={colors.dark_gray} />
 
         <VideoList />
       </SafeAreaView>

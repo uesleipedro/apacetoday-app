@@ -9,6 +9,8 @@ import {
 
 import { useNavigation } from '@react-navigation/native';
 
+import colors from '../assets/styles/colors';
+
 interface CardArtigoProps {
     data: {
         title: string;
@@ -55,16 +57,7 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         marginBottom: 5,
-        backgroundColor: '#FFF',
-        borderRadius: 3,
-        shadowColor: '#000',
-        shadowOffset: {
-            width: 0,
-            height: 10
-        },
-        shadowOpacity: .3,
-        shadowRadius: 20,
-        elevation: 1,
+        backgroundColor: colors.light_gray,
     },
     image: {
         width: 170,
@@ -74,7 +67,7 @@ const styles = StyleSheet.create({
         resizeMode: 'contain'
     },
     title: {
-        opacity: .6,
+        color: colors.light_text,
         fontSize: 14,
         fontWeight: '700',
     },
@@ -91,7 +84,7 @@ const styles = StyleSheet.create({
         marginLeft: 5
     },
     textTime: {
-        opacity: .4,
+        color: colors.gold_text,
         fontSize: 12,
         fontWeight: 'bold',
     }

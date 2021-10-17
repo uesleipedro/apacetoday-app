@@ -11,16 +11,14 @@ import {
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
 
-// function LoadingIndicatorView() {
-//     return <ActivityIndicator color='#009b88' size='large' />
-// }
+import colors from '../assets/styles/colors';
 
 function PodCastViewScreen({ route }) {
     const { link } = route.params;
     const navigation = useNavigation();
     return (
         <SafeAreaView style={styles.container}>
-            <StatusBar backgroundColor='#2c5288' />
+            <StatusBar backgroundColor={colors.dark_gray} />
             
             <View style={styles.header}>
                 <TouchableOpacity
@@ -39,7 +37,6 @@ function PodCastViewScreen({ route }) {
             </View>
 
             <WebView
-                // renderLoading={LoadingIndicatorView}
                 source={{ uri: link }}
             />
         </SafeAreaView>
@@ -53,7 +50,7 @@ const styles = StyleSheet.create({
     header: {
         flexDirection: 'row',
         height: 60,
-        backgroundColor: '#2c5288',
+        backgroundColor: colors.dark_gray,
         alignItems: 'center'
     },
     textHeader: {

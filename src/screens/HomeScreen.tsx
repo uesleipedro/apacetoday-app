@@ -12,6 +12,8 @@ import {
 import { useNavigation } from '@react-navigation/native';
 
 import Images from '../assets';
+import colors from '../assets/styles/colors';
+import { color } from 'react-native-reanimated';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -21,7 +23,7 @@ const Home = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <StatusBar backgroundColor='#2c5288' />
+            <StatusBar backgroundColor= {colors.dark_gray} />
             <View style={styles.header}>
 
                 <View style={styles.logoContainer}>
@@ -52,8 +54,7 @@ const Home = () => {
                             style={{
                                 width: 30,
                                 height: 30,
-                                //opacity: .8,
-                                tintColor: '#FFF'
+                                tintColor: colors.gold_text,//'#FFF'
                             }}
                         />
                         <Text style={styles.textItem1}>Notícias{'\n'}Astronômicas</Text>
@@ -77,7 +78,7 @@ const Home = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#2c5288',
+        backgroundColor: colors.dark_gray,
         height: windowHeight
     },
     header: {
@@ -105,7 +106,7 @@ const styles = StyleSheet.create({
         resizeMode: 'cover'
     },
     title: {
-        color: '#FFF',
+        color: colors.light_text,
         fontSize: 24,
         fontWeight: 'bold',
         paddingTop: 5,
@@ -115,6 +116,7 @@ const styles = StyleSheet.create({
     subtitle: {
         color: '#FFF',
         fontSize: 18,
+        color: colors.light_text,
         opacity: 0.8,
         textAlign: 'center'
     },
@@ -125,11 +127,11 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         borderTopLeftRadius: 50,
         borderTopRightRadius: 50,
-        backgroundColor: '#EFEFEF',
+        backgroundColor: colors.light_gray,
     },
     handleLaunchsGreetings: {
         flexDirection: 'row',
-        backgroundColor: '#2c5288',
+        backgroundColor: colors.dark_gray,
         height: windowHeight * 0.07,
         width: windowWidth * .8,
         borderRadius: 30,
@@ -137,7 +139,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     textLaunchsGreetings: {
-        color: '#FFF',
+        color: colors.gold_text,//'#FFF',
         fontSize: 18,
         fontWeight: 'bold'
     },
@@ -147,7 +149,7 @@ const styles = StyleSheet.create({
         width: windowWidth,
     },
     item1: {
-        backgroundColor: '#2c5288',
+        backgroundColor: colors.dark_gray,
         borderRadius: 20,
         width: windowWidth * .8,
         height: windowHeight * .2,//142,
@@ -158,7 +160,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: 'bold',
         fontSize: 18,
-        color: '#FFF'
+        color: colors.gold_text,
     },
 });
 

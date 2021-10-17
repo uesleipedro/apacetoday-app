@@ -9,6 +9,8 @@ import {
 import { useNavigation } from '@react-navigation/native';
 
 import Images from '../assets';
+import colors from '../assets/styles/colors';
+import { color } from 'react-native-reanimated';
 
 interface CardNewsProps {
     data: {
@@ -29,24 +31,14 @@ export const CardNews = ({ data }: CardNewsProps) => {
             <View style={styles.container}>
                 <View style={{
                     width: '20%',
-                    //backgroundColor: '#2C5288',
+                    backgroundColor: colors.light_gray,
                     alignItems: 'center',
                     justifyContent: 'center',
                 }}>
-                    {/* <Image
-                        source={Images.article}
-                        resizeMode='contain'
-                        style={{
-                            width: 30,
-                            height: 30,
-                            opacity: .5,
-                            tintColor: '#FFF'
-                        }}
-                    /> */}
 
                     <View
                         style={{
-                            width: 2,
+                            width: 0.5,
                             height: '100%',
                             backgroundColor: '#cfd8dc',
                             justifyContent: 'center',
@@ -59,7 +51,7 @@ export const CardNews = ({ data }: CardNewsProps) => {
                                 width: 10,
                                 height: 10,
                                 borderRadius: 10,
-                                backgroundColor: '#2C5288',
+                                backgroundColor: colors.gold_text,
                             }}
                         ></View>
                     </View>
@@ -74,7 +66,12 @@ export const CardNews = ({ data }: CardNewsProps) => {
                     <Text
                         style={styles.title}>{data.title}
                     </Text>
-                    <View style={{ backgroundColor: '#000', opacity: .2, height: 1 }}></View>
+                    <View
+                        style={{
+                            backgroundColor: colors.light_text,
+                            opacity: .2,
+                            height: 1
+                        }}></View>
                 </View>
             </View>
         </TouchableOpacity >
@@ -85,18 +82,11 @@ export const CardNews = ({ data }: CardNewsProps) => {
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        backgroundColor: '#FFF',
-        shadowColor: '#000',
-        shadowOffset: {
-            width: 0,
-            height: 10
-        },
-        shadowOpacity: .3,
-        shadowRadius: 20,
+        backgroundColor: colors.light_gray,
         height: 100,
     },
     title: {
-        opacity: .5,
+        color: colors.light_text,
         fontSize: 16,
         fontWeight: '700',
         paddingBottom: 20
