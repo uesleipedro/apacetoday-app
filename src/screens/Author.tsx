@@ -45,7 +45,8 @@ export default function Author() {
                     <Text style={styles.author}>Sérgio Sacani</Text>
                     <Text style={styles.formacao}>Geofísico pelo IAG da USP</Text>
                     <Text style={styles.description}>
-                        Formado em geofísica pelo IAG da USP, mestre em engenharia do petróleo pela UNICAMP e doutor em geociências pela UNICAMP. Sérgio está à frente do Space Today, o maior canal de notícias sobre astronomia do Brasil.
+                        Esse aplicativo é uma homenagem ao Sérgio Sacani, formado em geofísica pelo IAG da USP, mestre em engenharia do petróleo pela UNICAMP e doutor em geociências pela UNICAMP. 
+                        Sérgio está à frente do Space Today, o maior canal de notícias sobre astronomia do Brasil; e também está à frente do canal Ciência Sem Fim.
                     </Text>
                 </View>
 
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
     textHeader: {
         color: colors.light_text,
         fontWeight: 'bold',
-        fontSize: 18
+        fontSize: 20
     },
     containerIcon: {
         paddingLeft: 10,

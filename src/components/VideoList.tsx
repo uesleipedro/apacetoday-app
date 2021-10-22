@@ -4,6 +4,7 @@ import {
     FlatList,
     StyleSheet,
     ActivityIndicator,
+    RefreshControl
 } from 'react-native';
 
 import config from '../../config.json';
@@ -20,14 +21,15 @@ export default function VideoList() {
     const [page, setPage] = useState(1);
     const [loadingMore, setLoadingMore] = useState(false);
     const [loading, setLoading] = useState(true);
+    const [isRefreshing, setIsRefreshing] = useState(false);
 
     async function fetchVideos() {
         setLoadingMore(true);
 
         await apiScraping.get(`/videos/` + page)
             .then(response => {
-               setVideo([...videos, ...response.data.videos]);
-               setPage(oldValue => oldValue + 1);
+                setVideo([...videos, ...response.data.videos]);
+                setPage(oldValue => oldValue + 1);
             })
             .catch(function (error) {
                 console.error(error.message);
@@ -35,6 +37,14 @@ export default function VideoList() {
 
         setLoadingMore(false);
         setLoading(false);
+    }
+
+    function isRefreshSearch() {
+        setIsRefreshing(true);
+        setVideo([]);
+        //setPage(1);
+        fetchVideos();
+        setIsRefreshing(false);
     }
 
     function handleFetchMoreVideos(distance: number) {
@@ -74,8 +84,14 @@ export default function VideoList() {
                 }
                 ListFooterComponent={
                     loadingMore
-                        ? <ActivityIndicator color='#2c5288' />
+                        ? <ActivityIndicator color={colors.gold_text} size={60} />
                         : <></>
+                }
+                refreshControl={
+                    <RefreshControl
+                        refreshing={false}
+                        onRefresh={isRefreshSearch}
+                    />
                 }
             />
         </View>

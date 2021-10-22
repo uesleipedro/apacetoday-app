@@ -19,6 +19,7 @@ import PodCastViewScreen from '../screens/PodCastViewScreen';
 import NewsList from '../components/NewsList';
 import NewsView from '../screens/NewsViewScreen';
 import Author from '../screens/Author';
+import SpaceTodayTv from '../screens/SpaceTodayTv';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -33,8 +34,10 @@ const HomeStackScreen = () => (
         <Stack.Screen name="NewsList" component={NewsList} />
         <Stack.Screen name="NewsView" component={NewsView} />
         <Stack.Screen name="Author" component={Author} />
+        <Stack.Screen name="SpaceTodayTv" component={SpaceTodayTv} />
     </Stack.Navigator>
-)
+);
+
 const PodCastStackScreen = () => (
     <Stack.Navigator
         screenOptions={{
@@ -44,7 +47,8 @@ const PodCastStackScreen = () => (
         <Stack.Screen name="PodCast" component={PodCast} />
         <Stack.Screen name="PodCastViewScreen" component={PodCastViewScreen} />
     </Stack.Navigator>
-)
+);
+
 const StoreStackScreen = () => (
     <Stack.Navigator
         screenOptions={{
@@ -53,7 +57,8 @@ const StoreStackScreen = () => (
     >
         <Stack.Screen name="Store" component={Store} />
     </Stack.Navigator>
-)
+);
+
 const VideoStackScreen = () => (
     <Stack.Navigator
         screenOptions={{
@@ -62,7 +67,7 @@ const VideoStackScreen = () => (
     >
         <Stack.Screen name="Video" component={Video} />
     </Stack.Navigator>
-)
+);
 
 const ArtigoStackScreen = () => (
     <Stack.Navigator
@@ -73,7 +78,7 @@ const ArtigoStackScreen = () => (
         <Stack.Screen name="Artigo" component={Artigo} />
         <Stack.Screen name="ArtigoView" component={ArtigoView} />
     </Stack.Navigator>
-)
+);
 
 const Tabs = () => {
     return (
@@ -84,7 +89,8 @@ const Tabs = () => {
                     showLabel: false,
                     style: {
                         height: 60,
-                        backgroundColor: colors.dark_gray
+                        backgroundColor: colors.dark_gray,
+                        borderTopWidth: 0
                     }
                 }}
             >
@@ -141,43 +147,7 @@ const Tabs = () => {
 }
 
 const styles = StyleSheet.create({
-    modalView: {
-        position: 'absolute',
-        bottom: 0,
-        width: '100%',
-        backgroundColor: "white",
-        borderRadius: 20,
-        padding: 35,
-        alignItems: "center",
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 4,
-        elevation: 5
-    },
-    button: {
-        borderRadius: 20,
-        padding: 10,
-        elevation: 2
-    },
-    buttonOpen: {
-        backgroundColor: "#F194FF",
-    },
-    buttonClose: {
-        backgroundColor: "#2196F3",
-    },
-    textStyle: {
-        color: "white",
-        fontWeight: "bold",
-        textAlign: "center"
-    },
-    modalText: {
-        marginBottom: 15,
-        textAlign: "center"
-    }
+
 });
 
 export default Tabs;

@@ -3,11 +3,11 @@ const images = {
     cartShop: require('./cart.png'),
     headset: require('./headset.png'),
     rocketBlack: require('./rocket-black.png'),
-    //rocketBlackr: require('./rocket-blackr.png'),
     rocketWhite: require('./rocket-white.png'),
-   // rocketWhiter: require('./rocket-whiter.png'),
+    shuttle: require('./shuttle.png'),
     video: require('./logo-youtube.png'),
-    rocket: require('./rocket.png')
+    rocket: require('./rocket.png'),
+    author: require('./author.png')
 };
 
 export default images;

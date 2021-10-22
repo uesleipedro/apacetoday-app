@@ -26,7 +26,7 @@ function PodCastViewScreen({ route }) {
                     onPress={() => {
                         navigation.navigate('PodCast')
                     }} >
-                    <Icon name='arrowleft' size={30} color='#FFF' />
+                    <Icon name='arrowleft' size={30} color= {colors.gold_text} />
                 </TouchableOpacity>
 
                 <View style={styles.containerText}>
@@ -54,9 +54,9 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     textHeader: {
-        color: '#FFF',
+        color: colors.white,
         fontWeight: 'bold',
-        fontSize: 18
+        fontSize: 20
     },
     containerIcon: {
         paddingLeft: 10,

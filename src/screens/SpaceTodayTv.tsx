@@ -1,36 +1,44 @@
-import React from 'react';
+import React, { useEffect, useState }  from 'react';
 import {
-    StatusBar,
     View,
-    ActivityIndicator,
-    SafeAreaView,
     StyleSheet,
-    TouchableOpacity,
-    Text
+    Text,
+    TouchableOpacity
 } from 'react-native';
 import { WebView } from 'react-native-webview';
-import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/AntDesign';
 
+import { apiScraping } from '../services/api';
 import colors from '../assets/styles/colors';
 
-function LoadingIndicatorView() {
-    return <ActivityIndicator color='#009b88' size='large' />
-}
+export default function SpaceTodayTv() {
+    const navigation = useNavigation<any>();
+    const [configuracoes, setConfiguracoes] = useState('');
 
-function ArtigoViewScreen({ route }) {
-    const { link } = route.params;
-    const navigation = useNavigation();
+    async function fetchConfigurations() {
+
+        await apiScraping.get('/configuracoes/spacetoday2')
+            .then(response => {
+                let teste = [response.data.configuracoes]
+                setConfiguracoes(teste[0][0].value);
+            })
+            .catch(function (error) {
+                console.error(error.message);
+            })
+    }
+
+    useEffect(() => {
+        fetchConfigurations();
+    }, []);
 
     return (
-        <SafeAreaView style={styles.container}>
-            <StatusBar backgroundColor={colors.dark_gray} />
-
+        <>
             <View style={styles.header}>
                 <TouchableOpacity
                     style={styles.containerIcon}
                     onPress={() => {
-                        navigation.navigate('Artigo')
+                        navigation.navigate('Home')
                     }} >
                     <Icon name='arrowleft' size={30} color={colors.gold_text} />
                 </TouchableOpacity>
@@ -38,31 +46,30 @@ function ArtigoViewScreen({ route }) {
                 <View style={styles.containerText}>
                     <Text
                         style={styles.textHeader}>
-                        Blog SpaceToday</Text>
+                        Programação 24hs</Text>
                 </View>
             </View>
-
             <WebView
-                renderLoading={LoadingIndicatorView}
-                source={{ uri: link }}
+                allowsFullscreenVideo
+                allowsInlineMediaPlayback
+                mediaPlaybackRequiresUserAction
+                source={{ uri: 'https://www.youtube.com/embed/'+configuracoes}}
             />
-        </SafeAreaView>
-
+        </>
     );
 }
 
+
+
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
     header: {
         flexDirection: 'row',
         height: 40,
         backgroundColor: colors.dark_gray,
-        alignItems: 'center'
+        alignItems: 'center',
     },
     textHeader: {
-        color: colors.white,
+        color: colors.light_text,
         fontWeight: 'bold',
         fontSize: 20
     },
@@ -76,8 +83,5 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         height: '100%',
         width: '80%'
-    }
-})
-
-
-export default ArtigoViewScreen;
+    },
+});

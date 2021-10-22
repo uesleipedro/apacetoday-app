@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import Images from '../assets';
 import colors from '../assets/styles/colors';
 import { color } from 'react-native-reanimated';
 
@@ -38,23 +37,13 @@ export const CardNews = ({ data }: CardNewsProps) => {
 
                     <View
                         style={{
-                            width: 0.5,
-                            height: '100%',
-                            backgroundColor: '#cfd8dc',
-                            justifyContent: 'center',
-                            alignItems: 'center'
-                        }}
-                    >
-                        <View
-                            style={{
-                                position: 'relative',
-                                width: 10,
-                                height: 10,
-                                borderRadius: 10,
-                                backgroundColor: colors.gold_text,
-                            }}
-                        ></View>
-                    </View>
+                            position: 'relative',
+                            width: 10,
+                            height: 10,
+                            borderRadius: 10,
+                            backgroundColor: colors.gold_text,
+                        }} />
+
                 </View>
                 <View style={{
                     paddingLeft: 10,

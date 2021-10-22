@@ -5,5 +5,8 @@ export default {
     gold_text: '#fac608',
     light_text: '#d6d6d6',
 
-    blue: '#1788bc'
+    blue: '#1788bc',
+    light_blue: "#14A2FA",
+
+    white: '#FFF'
   };

@@ -5,7 +5,6 @@ import {
     Image,
     Text,
     StatusBar,
-    TouchableOpacity,
     SafeAreaView,
     Dimensions,
 } from 'react-native';
@@ -13,7 +12,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import Images from '../assets';
 import colors from '../assets/styles/colors';
-import { color } from 'react-native-reanimated';
+import { PrimaryCard } from '../components/PrimaryCard';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -23,13 +22,14 @@ const Home = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <StatusBar backgroundColor= {colors.dark_gray} />
+            <StatusBar backgroundColor={colors.dark_gray} />
             <View style={styles.header}>
 
                 <View style={styles.logoContainer}>
                     <Image
                         style={styles.tinyLogo}
-                        source={require('../assets/rocket-white.png')}
+                        source={Images.shuttle}
+                        resizeMode='contain'
                     />
                 </View>
 
@@ -38,37 +38,32 @@ const Home = () => {
                         Salve, Salve, amigos
                     </Text>
                     <Text style={styles.subtitle}>
-                        da astronomia em todo o mundo! 
+                        da astronomia em todo o mundo!
                     </Text>
                 </View>
             </View>
             <View style={styles.body}>
 
-                <TouchableOpacity
-                    style={styles.containerOutros}
-                    onPress={() => { navigation.navigate('NewsList') }} >
-                    <View style={styles.item1}>
-                        <Image
-                            source={Images.article}
-                            resizeMode='contain'
-                            style={{
-                                width: 30,
-                                height: 30,
-                                tintColor: colors.gold_text,//'#FFF'
-                            }}
-                        />
-                        <Text style={styles.textItem1}>Notícias{'\n'}Astronômicas</Text>
-                    </View>
-                </TouchableOpacity>
+                <PrimaryCard
+                    icon={Images.article}
+                    title={'Notícias Astronômicas'}
+                    screenNavigation={'NewsList'}
+                    iconColor={colors.gold_text}
+                />
 
-                <TouchableOpacity
-                    style={styles.handleLaunchsGreetings}
-                    onPress={() => { navigation.navigate('Author') }}
-                >
-                    <Text style={styles.textLaunchsGreetings}>
-                        Sobre o Autor
-                    </Text>
-                </TouchableOpacity>
+                <PrimaryCard
+                    icon={Images.video}
+                    title={'SpaceToday 2 24hs'}
+                    screenNavigation={'SpaceTodayTv'}
+                    iconColor={colors.gold_text}
+                />
+
+                <PrimaryCard
+                    icon={Images.author}
+                    title={'Sobre o Autor'}
+                    screenNavigation={'Author'}
+                    iconColor={colors.gold_text}
+                />
 
             </View>
         </SafeAreaView>
@@ -101,9 +96,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     tinyLogo: {
-        height: windowHeight * 0.2, //175,
-        width: windowWidth * 0.3,//130
-        resizeMode: 'cover'
+        // height: windowHeight * 0.2,
+        // width: windowWidth * 0.3,
+        // resizeMode: 'cover'
+        flex: 1
     },
     title: {
         color: colors.light_text,
@@ -111,27 +107,26 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         paddingTop: 5,
         textAlign: 'center',
-        // fontFamily: 'Glegoo-Bold'
+        fontFamily: 'Glegoo-Bold'
     },
     subtitle: {
-        color: '#FFF',
         fontSize: 18,
         color: colors.light_text,
         opacity: 0.8,
         textAlign: 'center'
     },
     body: {
-        flex: 1,
-        bottom: 0,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        borderTopLeftRadius: 50,
-        borderTopRightRadius: 50,
-        backgroundColor: colors.light_gray,
-    },
-    handleLaunchsGreetings: {
+        flexWrap: 'wrap',
         flexDirection: 'row',
+        flex: 1,
+        alignItems: 'center',
+        paddingHorizontal: '5%',
+        justifyContent: 'space-evenly',
         backgroundColor: colors.dark_gray,
+    },
+    handleAuthor: {
+        flexDirection: 'row',
+        backgroundColor: colors.light_gray,
         height: windowHeight * 0.07,
         width: windowWidth * .8,
         borderRadius: 30,

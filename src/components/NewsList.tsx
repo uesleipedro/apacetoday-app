@@ -5,7 +5,8 @@ import {
     ActivityIndicator,
     StyleSheet,
     TouchableOpacity,
-    Text
+    Text,
+    RefreshControl
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/AntDesign';
@@ -13,7 +14,6 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import { Load } from './Load';
 import { apiScraping } from '../services/api';
 import { CardNews } from './CardNews';
-import { color } from 'react-native-reanimated';
 import colors from '../assets/styles/colors';
 
 export default function ArtigoList() {
@@ -22,6 +22,7 @@ export default function ArtigoList() {
     const [page, setPage] = useState(1);
     const [loadingMore, setLoadingMore] = useState(false);
     const [loading, setLoading] = useState(true);
+    const [isRefreshing, setIsRefreshing] = useState(true);
 
     const navigation = useNavigation();
 
@@ -49,6 +50,15 @@ export default function ArtigoList() {
         setLoadingMore(true);
         fetchNews();
     }
+
+    function isRefreshSearch() {
+        setIsRefreshing(true);
+        setNews([{}]);
+        //setPage(1);
+        fetchNews();
+        setIsRefreshing(false);
+    }
+
 
     useEffect(() => {
         fetchNews();
@@ -80,10 +90,6 @@ export default function ArtigoList() {
             <FlatList
                 data={news}
                 keyExtractor={item => String(item.id)}
-                contentContainerStyle={{
-                    //padding: SPACING,
-                    //paddingTop: 10
-                }}
                 renderItem={({ item, index }) => (
                     <CardNews
                         data={item}
@@ -96,8 +102,14 @@ export default function ArtigoList() {
                 }
                 ListFooterComponent={
                     loadingMore
-                        ? <ActivityIndicator color='#79AADB' />
+                        ? <ActivityIndicator color={colors.gold_text} size={60} />
                         : <></>
+                }
+                refreshControl={
+                    <RefreshControl
+                        refreshing={false}
+                        onRefresh={isRefreshSearch}
+                    />
                 }
             />
         </View>
@@ -112,9 +124,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     textHeader: {
-        color: '#FFF',
+        color: colors.white,
         fontWeight: 'bold',
-        fontSize: 18
+        fontSize: 20
     },
     containerIcon: {
         paddingLeft: 10,

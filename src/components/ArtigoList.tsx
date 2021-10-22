@@ -3,6 +3,7 @@ import {
     View,
     FlatList,
     ActivityIndicator,
+    RefreshControl
 } from 'react-native';
 
 import { apiScraping } from '../services/api';
@@ -17,6 +18,7 @@ export default function ArtigoList() {
     const [page, setPage] = useState(1);
     const [loadingMore, setLoadingMore] = useState(false);
     const [loading, setLoading] = useState(true);
+    const [isRefreshing, setIsRefreshing] = useState(true);
 
     async function fetchArtigos() {
 
@@ -41,6 +43,14 @@ export default function ArtigoList() {
 
         setLoadingMore(true);
         fetchArtigos();
+    }
+
+    function isRefreshSearch() {
+        setIsRefreshing(true);
+        setArtigos([{}]);
+        //setPage(1);
+        fetchArtigos();
+        setIsRefreshing(false);
     }
 
     useEffect(() => {
@@ -72,10 +82,16 @@ export default function ArtigoList() {
                 }
                 ListFooterComponent={
                     loadingMore
-                        ? <ActivityIndicator color='#79AADB' />
+                        ? <ActivityIndicator color={colors.gold_text} size={60} />
                         : <></>
+                }
+                refreshControl={
+                    <RefreshControl
+                        refreshing={false}
+                        onRefresh={isRefreshSearch}
+                    />
                 }
             />
         </View>
     );
-} 
+}

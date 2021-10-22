@@ -63,9 +63,9 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     textHeader: {
-        color: colors.gold_text,
+        color: colors.white,
         fontWeight: 'bold',
-        fontSize: 18
+        fontSize: 20
     },
     containerIcon: {
         paddingLeft: 10,

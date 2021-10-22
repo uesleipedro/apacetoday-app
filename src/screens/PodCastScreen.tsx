@@ -74,7 +74,7 @@ export default function PodCastScreen() {
                     }
                     ListFooterComponent={
                         loadingMore
-                            ? <ActivityIndicator color='#79AADB' />
+                            ? <ActivityIndicator color={colors.gold_text} size={60} />
                             : <></>
                     }
                 />

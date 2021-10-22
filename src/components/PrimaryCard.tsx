@@ -3,28 +3,40 @@ import {
     View,
     Text,
     TouchableOpacity,
-    StyleSheet
+    StyleSheet,
+    Image
 } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
+
+import colors from '../assets/styles/colors';
 
 interface PrimaryCardProps {
     title: string;
     icon: string;
-    iconColor: string
-    screenNavigation: string
+    screenNavigation: string,
+    iconColor: string,
 }
 
-export const PrimaryCard = ({ icon, title, iconColor, screenNavigation }: PrimaryCardProps) => {
-    
+export const PrimaryCard = ({ icon, title, screenNavigation, iconColor }: PrimaryCardProps) => {
+
     const navigation = useNavigation();
-    
+
     return (
         <TouchableOpacity
             onPress={() => navigation.navigate(screenNavigation)}
+            style={{marginBottom: 15}}
         >
             <View style={styles.container}>
-                <Icon name={icon} style={styles.icon} color={iconColor} />
+                {/* <Icon name={icon} style={styles.icon} color={'red'} /> */}
+                <Image
+                    source={icon}
+                    resizeMode='contain'
+                    style={{
+                        width: 30,
+                        height: 30,
+                        tintColor: iconColor,
+                    }}
+                />
                 <Text style={styles.title}>{title}</Text>
             </View>
         </TouchableOpacity>
@@ -33,18 +45,19 @@ export const PrimaryCard = ({ icon, title, iconColor, screenNavigation }: Primar
 
 const styles = StyleSheet.create({
     container: {
-        height: 100,
-        width: 176,
+        height: 130,
+        width: 130,
         borderRadius: 10,
-        backgroundColor: '#FFF',
-        justifyContent: 'center',
+        backgroundColor: colors.light_gray,
+        justifyContent: 'space-evenly',
         alignItems: 'center',
-        elevation: 5,
+        elevation: 2,
     },
     title: {
         fontSize: 17,
         fontWeight: 'bold',
-        color: '#b3aec8'
+        color: colors.white,
+        textAlign: 'center'
     },
     icon: {
         fontSize: 60
