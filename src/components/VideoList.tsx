@@ -7,8 +7,6 @@ import {
     RefreshControl
 } from 'react-native';
 
-import config from '../../config.json';
-
 import { apiScraping } from '../services/api';
 import { CardVideo } from './CardVideo';
 import { Load } from './Load';
@@ -39,11 +37,17 @@ export default function VideoList() {
         setLoading(false);
     }
 
-    function isRefreshSearch() {
+    async function isRefreshSearch() {
         setIsRefreshing(true);
-        setVideo([]);
-        //setPage(1);
-        fetchVideos();
+
+        await apiScraping.get(`/videos/1`)
+            .then(response => {
+                setVideo([...response.data.videos]);
+                setPage(oldValue => oldValue + 1);
+            })
+            .catch(function (error) {
+                console.error(error.message);
+            })
         setIsRefreshing(false);
     }
 

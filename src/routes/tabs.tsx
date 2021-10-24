@@ -1,10 +1,12 @@
 import React from 'react';
 import {
     StyleSheet,
+    Dimensions
 } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
+const windowHeight = Dimensions.get('window').height;
 
 import colors from '../assets/styles/colors';
 import Icones from '../components/PrimaryIcons';
@@ -88,9 +90,10 @@ const Tabs = () => {
                 tabBarOptions={{
                     showLabel: false,
                     style: {
-                        height: 60,
+                        height: windowHeight * 0.08,
                         backgroundColor: colors.dark_gray,
-                        borderTopWidth: 0
+                        borderTopWidth: 0,
+                        paddingTop: 2
                     }
                 }}
             >

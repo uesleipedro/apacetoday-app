@@ -51,11 +51,16 @@ export default function ArtigoList() {
         fetchNews();
     }
 
-    function isRefreshSearch() {
+    async function isRefreshSearch() {
         setIsRefreshing(true);
-        setNews([{}]);
-        //setPage(1);
-        fetchNews();
+        await apiScraping.get(`/externalArticles/1`)
+            .then(response => {
+                setNews([...response.data.data]);
+                setPage(oldValue => oldValue + 1);
+            })
+            .catch(function (error) {
+                console.error(error.message);
+            })
         setIsRefreshing(false);
     }
 

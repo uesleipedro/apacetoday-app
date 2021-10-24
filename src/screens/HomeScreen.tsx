@@ -7,6 +7,7 @@ import {
     StatusBar,
     SafeAreaView,
     Dimensions,
+    ScrollView
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -22,59 +23,61 @@ const Home = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <StatusBar backgroundColor={colors.dark_gray} />
-            <View style={styles.header}>
+            <ScrollView>
+                <StatusBar backgroundColor={colors.dark_gray} />
+                <View style={styles.header}>
 
-                <View style={styles.logoContainer}>
-                    <Image
-                        style={styles.tinyLogo}
-                        source={Images.shuttle}
-                        resizeMode='contain'
+                    <View style={styles.logoContainer}>
+                        <Image
+                            style={styles.tinyLogo}
+                            source={Images.shuttle}
+                            resizeMode='contain'
+                        />
+                    </View>
+
+                    <View style={styles.titleContainer}>
+                        <Text style={styles.title}>
+                            Salve, Salve, amigos
+                    </Text>
+                        <Text style={styles.subtitle}>
+                            da astronomia em todo o mundo!
+                    </Text>
+                    </View>
+                </View>
+                <View style={styles.body}>
+
+                    <PrimaryCard
+                        icon={Images.article}
+                        title={'Notícias Astronômicas'}
+                        screenNavigation={'NewsList'}
+                        iconColor={colors.gold_text}
                     />
+
+                    <PrimaryCard
+                        icon={Images.video}
+                        title={'SpaceToday 2'}
+                        screenNavigation={'SpaceTodayTv'}
+                        iconColor={colors.gold_text}
+                    />
+
+                    <PrimaryCard
+                        icon={Images.author}
+                        title={'Sobre o Autor'}
+                        screenNavigation={'Author'}
+                        iconColor={colors.gold_text}
+                    />
+
                 </View>
-
-                <View style={styles.titleContainer}>
-                    <Text style={styles.title}>
-                        Salve, Salve, amigos
-                    </Text>
-                    <Text style={styles.subtitle}>
-                        da astronomia em todo o mundo!
-                    </Text>
-                </View>
-            </View>
-            <View style={styles.body}>
-
-                <PrimaryCard
-                    icon={Images.article}
-                    title={'Notícias Astronômicas'}
-                    screenNavigation={'NewsList'}
-                    iconColor={colors.gold_text}
-                />
-
-                <PrimaryCard
-                    icon={Images.video}
-                    title={'SpaceToday 2 24hs'}
-                    screenNavigation={'SpaceTodayTv'}
-                    iconColor={colors.gold_text}
-                />
-
-                <PrimaryCard
-                    icon={Images.author}
-                    title={'Sobre o Autor'}
-                    screenNavigation={'Author'}
-                    iconColor={colors.gold_text}
-                />
-
-            </View>
+            </ScrollView>
         </SafeAreaView>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         backgroundColor: colors.dark_gray,
-        height: windowHeight
+        height: windowHeight * 0.92,
+        paddingBottom: 20
     },
     header: {
         justifyContent: 'center',
@@ -96,9 +99,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     tinyLogo: {
-        // height: windowHeight * 0.2,
-        // width: windowWidth * 0.3,
-        // resizeMode: 'cover'
         flex: 1
     },
     title: {
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     textLaunchsGreetings: {
-        color: colors.gold_text,//'#FFF',
+        color: colors.gold_text,
         fontSize: 18,
         fontWeight: 'bold'
     },

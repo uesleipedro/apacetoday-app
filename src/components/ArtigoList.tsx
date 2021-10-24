@@ -45,11 +45,16 @@ export default function ArtigoList() {
         fetchArtigos();
     }
 
-    function isRefreshSearch() {
+    async function isRefreshSearch() {
         setIsRefreshing(true);
-        setArtigos([{}]);
-        //setPage(1);
-        fetchArtigos();
+        await apiScraping.get(`/articles/1`)
+            .then(response => {
+                setArtigos([...response.data.data]);
+                setPage(oldValue => oldValue + 1);
+            })
+            .catch(function (error) {
+                console.error(error.message);
+            })
         setIsRefreshing(false);
     }
 

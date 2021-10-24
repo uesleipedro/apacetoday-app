@@ -4,9 +4,11 @@ import {
     Text,
     TouchableOpacity,
     StyleSheet,
-    Image
+    Image,
+    Dimensions
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+const windowHeight = Dimensions.get('window').height;
 
 import colors from '../assets/styles/colors';
 
@@ -24,7 +26,7 @@ export const PrimaryCard = ({ icon, title, screenNavigation, iconColor }: Primar
     return (
         <TouchableOpacity
             onPress={() => navigation.navigate(screenNavigation)}
-            style={{marginBottom: 15}}
+            style={{ marginBottom: 15 }}
         >
             <View style={styles.container}>
                 {/* <Icon name={icon} style={styles.icon} color={'red'} /> */}
@@ -37,7 +39,11 @@ export const PrimaryCard = ({ icon, title, screenNavigation, iconColor }: Primar
                         tintColor: iconColor,
                     }}
                 />
-                <Text style={styles.title}>{title}</Text>
+                <Text
+                    style={styles.title}
+                    numberOfLines={2}
+                    adjustsFontSizeToFit
+                >{title}</Text>
             </View>
         </TouchableOpacity>
     );
@@ -45,8 +51,8 @@ export const PrimaryCard = ({ icon, title, screenNavigation, iconColor }: Primar
 
 const styles = StyleSheet.create({
     container: {
-        height: 130,
-        width: 130,
+        height: windowHeight * 0.19,
+        width: windowHeight * 0.19,
         borderRadius: 10,
         backgroundColor: colors.light_gray,
         justifyContent: 'space-evenly',
