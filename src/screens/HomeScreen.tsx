@@ -38,10 +38,10 @@ const Home = () => {
                     <View style={styles.titleContainer}>
                         <Text style={styles.title}>
                             Salve, Salve, amigos
-                    </Text>
+                        </Text>
                         <Text style={styles.subtitle}>
                             da astronomia em todo o mundo!
-                    </Text>
+                        </Text>
                     </View>
                 </View>
                 <View style={styles.body}>
@@ -64,6 +64,13 @@ const Home = () => {
                         icon={Images.author}
                         title={'Sobre o Autor'}
                         screenNavigation={'Author'}
+                        iconColor={colors.gold_text}
+                    />
+
+                    <PrimaryCard
+                        icon={Images.rocket}
+                        title={'Lançamentos'}
+                        screenNavigation={'Lancamentos'}
                         iconColor={colors.gold_text}
                     />
 
