@@ -21,6 +21,8 @@ import PodCastViewScreen from '../screens/PodCastViewScreen';
 import NewsList from '../components/NewsList';
 import NewsView from '../screens/NewsViewScreen';
 import Author from '../screens/Author';
+import Lancamentos from '../screens/Lancamentos';
+import LancamentoDetalhe from '../screens/LancamentoDetalhe';
 import SpaceTodayTv from '../screens/SpaceTodayTv';
 
 const Tab = createBottomTabNavigator();
@@ -36,6 +38,8 @@ const HomeStackScreen = () => (
         <Stack.Screen name="NewsList" component={NewsList} />
         <Stack.Screen name="NewsView" component={NewsView} />
         <Stack.Screen name="Author" component={Author} />
+        <Stack.Screen name="Lancamentos" component={Lancamentos} />
+        <Stack.Screen name="LancamentoDetalhe" component={LancamentoDetalhe} />
         <Stack.Screen name="SpaceTodayTv" component={SpaceTodayTv} />
     </Stack.Navigator>
 );
