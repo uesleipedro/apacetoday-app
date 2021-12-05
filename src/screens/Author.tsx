@@ -49,7 +49,8 @@ export default function Author() {
                         <Text style={styles.description}>
                             Esse aplicativo é uma homenagem ao Sérgio Sacani, formado em geofísica pelo IAG da USP, mestre em engenharia do petróleo pela UNICAMP e doutor em geociências pela UNICAMP.
                             Sérgio está à frente do Space Today, o maior canal de notícias sobre astronomia do Brasil; e também está à frente do canal Ciência Sem Fim.
-                    </Text>
+                        </Text>
+                        <Text style={styles.description}>Ao acessar o conteúdo deste app, você estará acessando diretamente o conteúdo do Sérgio Sacani, gerando views para o mesmo. O app não possui fins lucrativos para o desenvolvedor.</Text>
                     </View>
 
                 </View>

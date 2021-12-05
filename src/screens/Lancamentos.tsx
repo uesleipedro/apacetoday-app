@@ -7,7 +7,6 @@ import {
     TouchableOpacity,
     StyleSheet,
     Text,
-    Alert
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
@@ -16,6 +15,7 @@ import { apiScraping } from '../services/api';
 import { CardLaunch } from '../components/CardLaunch';
 import { Load } from '../components/Load';
 import colors from '../assets/styles/colors';
+import ModalBottom from '../components/ModalBottom';
 
 export default function Lancamentos() {
 
@@ -25,6 +25,7 @@ export default function Lancamentos() {
     const [loading, setLoading] = useState(true);
     const [isRefreshing, setIsRefreshing] = useState(true);
     const navigation = useNavigation<any>();
+    const [modalVisible, setModalVisible] = useState<boolean>(false);
 
     useEffect(() => {
         fetchRocketLaunch();
@@ -75,6 +76,12 @@ export default function Lancamentos() {
     return (
 
         <View style={{ flex: 1, backgroundColor: colors.light_gray }}>
+            <ModalBottom
+                texto="Informações coletadas da API https://ll.thespacedevs.com. Todos os direitos reservados."
+                modalVisible={modalVisible}
+                setModalVisible={setModalVisible}
+            />
+
             <View style={styles.header}>
                 <TouchableOpacity
                     style={styles.containerIcon}
@@ -95,7 +102,7 @@ export default function Lancamentos() {
                         name="infocirlceo"
                         size={20}
                         color={colors.gold_text}
-                        onPress={() => { Alert.alert("Informações coletadas da api https://ll.thespacedevs.com") }}
+                        onPress={() => setModalVisible(!modalVisible)}
                     />
                 </View>
             </View>

@@ -7,12 +7,4 @@ export const apiScraping = axios.create({
         'Accept': 'application/json',
         'Content-Type': 'application/json;charset=UTF-8'
     },
-})
-
-export const apiYoutube = axios.create({
-    baseURL: config.API_YOUTUBE,
-    headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json;charset=UTF-8'
-    },
-})
+});

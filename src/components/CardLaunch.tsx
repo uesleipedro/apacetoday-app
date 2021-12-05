@@ -42,7 +42,7 @@ export const CardLaunch = ({ data }: CardLaunchProps) => {
                     ? (
                         <Image
                             source={images.noimage}
-                            style={styles.image}
+                            style={styles.noimage}
                         />
                     ) : (
                         <Image
@@ -95,6 +95,13 @@ const styles = StyleSheet.create({
         height: 120,
         borderRadius: 3,
         marginLeft: 2,
+    },
+    noimage: {
+        width: 80,
+        height: 120,
+        borderRadius: 3,
+        marginLeft: 2,
+        opacity: 0.7
     },
     text: {
         flex: 1,
