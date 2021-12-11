@@ -4,7 +4,8 @@ import {
     StyleSheet,
     Text,
     ImageBackground,
-    TouchableOpacity
+    TouchableOpacity,
+    ScrollView
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { format, parseISO } from "date-fns";
@@ -42,41 +43,44 @@ const LancamentoDetalhe = ({ route }: any) => {
                     start={{ x: 1, y: 1 }}
                     end={{ x: 1.5, y: 0 }}
                 >
-                    <View style={styles.textContainer}>
-                        <View style={styles.fieldset}>
-                            <Text style={styles.label}>Missão: </Text>
-                            <Text style={styles.text}>{data.name}</Text>
+                    <ScrollView contentContainerStyle={{ flexGrow: 2, justifyContent: 'flex-end' }}>
+                        <View style={styles.textContainer}>
+
+                            <View style={styles.fieldset}>
+                                <Text style={styles.label}>Missão: </Text>
+                                <Text style={styles.text}>{data.name}</Text>
+                            </View>
+
+                            <View style={styles.fieldset}>
+                                <Text style={styles.label}>Empresa: </Text>
+                                <Text style={styles.text}>{data.company}</Text>
+                            </View>
+
+                            <View style={styles.fieldset}>
+                                <Text style={styles.label}>Foguete: </Text>
+                                <Text style={styles.text}>{data.rocketName}</Text>
+                            </View>
+
+                            <View style={styles.fieldset}>
+                                <Text style={styles.label}>Data: </Text>
+                                <Text style={styles.text}>{format(parseISO(data.date), "dd/MM/yyyy kk:mm:ss")}</Text>
+                            </View>
+
+                            <View style={styles.fieldset}>
+                                <Text style={styles.label}>Local: </Text>
+                                <Text style={styles.text}>{data.locationName}</Text>
+                            </View>
+
+                            <View style={styles.fieldset}>
+                                <Text style={styles.label}>Pad de lançamento: </Text>
+                                <Text style={styles.text}>{data.pad}</Text>
+                            </View>
+
+                            <Text style={styles.labelDescription}>Descrição: </Text>
+                            <Text style={styles.textDescription}>{data.description}</Text>
+
                         </View>
-
-                        <View style={styles.fieldset}>
-                            <Text style={styles.label}>Empresa: </Text>
-                            <Text style={styles.text}>{data.company}</Text>
-                        </View>
-
-                        <View style={styles.fieldset}>
-                            <Text style={styles.label}>Foguete: </Text>
-                            <Text style={styles.text}>{data.rocketName}</Text>
-                        </View>
-
-                        <View style={styles.fieldset}>
-                            <Text style={styles.label}>Data: </Text>
-                            <Text style={styles.text}>{format(parseISO(data.date), "dd/MM/yyyy kk:mm:ss")}</Text>
-                        </View>
-
-                        <View style={styles.fieldset}>
-                            <Text style={styles.label}>Local: </Text>
-                            <Text style={styles.text}>{data.locationName}</Text>
-                        </View>
-
-                        <View style={styles.fieldset}>
-                            <Text style={styles.label}>Pad de lançamento: </Text>
-                            <Text style={styles.text}>{data.pad}</Text>
-                        </View>
-
-                        <Text style={styles.labelDescription}>Descrição: </Text>
-                        <Text style={styles.textDescription}>{data.description}</Text>
-
-                    </View>
+                    </ScrollView>
                 </LinearGradient>
 
             </ImageBackground>
@@ -118,11 +122,12 @@ const styles = StyleSheet.create({
     },
     textContainer: {
         display: 'flex',
+        flexDirection: 'column',
         justifyContent: 'flex-end',
         height: '100%',
         width: '100%',
         paddingLeft: 10,
-        paddingBottom: 20
+        paddingBottom: 20,
     },
     text: {
         flex: 1,
@@ -154,5 +159,5 @@ const styles = StyleSheet.create({
         marginTop: 10,
         display: 'flex',
         flexDirection: 'column',
-    },
+    }
 });

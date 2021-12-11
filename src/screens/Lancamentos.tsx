@@ -98,12 +98,16 @@ export default function Lancamentos() {
                         Próximos lançamentos
                     </Text>
 
-                    <Icon
-                        name="infocirlceo"
-                        size={20}
-                        color={colors.gold_text}
+                    <TouchableOpacity
+                        style={styles.infoIcon}
                         onPress={() => setModalVisible(!modalVisible)}
-                    />
+                    >
+                        <Icon
+                            name="infocirlceo"
+                            size={20}
+                            color={colors.gold_text}
+                        />
+                    </TouchableOpacity>
                 </View>
             </View>
 
@@ -119,15 +123,19 @@ export default function Lancamentos() {
                     />
                 )}
                 showsVerticalScrollIndicator={false}
-                onEndReachedThreshold={0.3}
                 onEndReached={({ distanceFromEnd }) =>
                     handleFetchMoreLaunch(distanceFromEnd)
                 }
+                onEndReachedThreshold={0.6}
                 ListFooterComponent={
                     loadingMore
-                        ? <ActivityIndicator color={colors.gold_text} size={60} />
+                        ? <ActivityIndicator color={colors.gold_text} size={100} />
                         : <></>
                 }
+                initialNumToRender={10}
+                removeClippedSubviews={true}
+                maxToRenderPerBatch={10}
+                updateCellsBatchingPeriod={10}
                 refreshControl={
                     <RefreshControl
                         refreshing={false}
@@ -166,4 +174,12 @@ const styles = StyleSheet.create({
         width: '80%',
         paddingRight: 10
     },
+    infoIcon: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100%',
+        width: 50
+    }
 });
