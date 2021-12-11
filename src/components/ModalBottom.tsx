@@ -21,17 +21,25 @@ const ModalBottom = ({ texto, modalVisible, setModalVisible }) => {
                 setModalVisible(!modalVisible);
             }}
         >
-            <View style={styles.modalView}>
-                <TouchableOpacity
-                    onPress={() => setModalVisible(!modalVisible)}
-                    style={styles.exitModal}
-                >
-                    <View >
-                        <Text style={styles.exitModalX}>X</Text>
-                    </View>
-                </TouchableOpacity>
-                <Text style={styles.modalText}>{texto}</Text>
-            </View>
+            <TouchableOpacity
+                style={{
+                    height: '100%',
+                    backgroundColor: '#000000AA'
+                }}
+                onPress={() => setModalVisible(!modalVisible)}
+            >
+                <View style={styles.modalView}>
+                    <TouchableOpacity
+                        onPress={() => setModalVisible(!modalVisible)}
+                        style={styles.exitModal}
+                    >
+                        <View >
+                            <Text style={styles.exitModalX}>X</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <Text style={styles.modalText}>{texto}</Text>
+                </View>
+            </TouchableOpacity>
         </Modal>
     );
 }
@@ -40,7 +48,6 @@ export default ModalBottom;
 
 const styles = StyleSheet.create({
     modal: {
-
     },
     modalView: {
         display: 'flex',
