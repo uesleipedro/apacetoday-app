@@ -12,21 +12,8 @@ import FastImage from 'react-native-fast-image'
 
 import images from '../assets';
 import colors from '../assets/styles/colors';
+import { CardLaunchProps } from '../utils/types';
 
-interface CardLaunchProps {
-    data: {
-        name: string;
-        date: string;
-        image: string;
-        company: string;
-        pad: string;
-        rocketName: string;
-        missionName: string;
-        description: string;
-        missionType: string;
-        locationName: string;
-    }
-}
 
 export const CardLaunch = ({ data }: CardLaunchProps) => {
 
@@ -38,20 +25,6 @@ export const CardLaunch = ({ data }: CardLaunchProps) => {
         >
 
             <View style={styles.container}>
-                {/* {data.image === null
-                    ? (
-                        <Image
-                            source={images.noimage}
-                            style={styles.noimage}
-                        />
-                    ) : (
-                        <Image
-                            source={{
-                                uri: `${data.image}`
-                            }}
-                            style={styles.image}
-                        />
-                    )} */}
                 {data.image === null
                     ? (
                         <FastImage
