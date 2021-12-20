@@ -61,7 +61,7 @@ const Home = () => {
                     />
 
                     <PrimaryCard
-                        icon={Images.author}
+                        icon={Images.authorIcon}
                         title={'Sobre o Autor'}
                         screenNavigation={'Author'}
                         iconColor={colors.gold_text}

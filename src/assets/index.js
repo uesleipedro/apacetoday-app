@@ -7,7 +7,8 @@ const images = {
     shuttle: require('./shuttle.png'),
     video: require('./logo-youtube.png'),
     rocket: require('./rocket.png'),
-    author: require('./author.png'),
+    author: require('./author.jpg'),
+    authorIcon: require('./authorIcon.png'),
     noimage: require('./noimage.jpg'),
 };
 
