@@ -12,7 +12,7 @@ import colors from '../assets/styles/colors';
 import Icones from '../components/PrimaryIcons';
 import Images from '../assets';
 import Home from '../screens/HomeScreen';
-import Artigo from '../screens/ArtigoScreen';
+import Artigo from '../screens/ArticlesList';
 import PodCast from '../screens/PodCastScreen';
 import Store from '../screens/StoreScreen';
 import Video from '../screens/VideosScreen';

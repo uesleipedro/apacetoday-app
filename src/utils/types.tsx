@@ -12,3 +12,12 @@ export interface CardLaunchProps {
         locationName: string;
     }
 }
+
+export interface CardArtigoProps {
+    data: {
+        title: string;
+        link: string;
+        image: string;
+        time: string;
+    }
+}
