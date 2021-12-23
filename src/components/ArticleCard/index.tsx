@@ -15,7 +15,7 @@ export const CardArtigo = ({ data }: CardArtigoProps) => {
 
     return (
         <TouchableOpacity
-            onPress={() => { navigation.navigate('ArtigoView', { link: data.link }) }}
+            onPress={() => { navigation.navigate('ArticleView', { link: data.link }) }}
         >
 
             <View style={styles.container}>

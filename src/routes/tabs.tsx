@@ -16,7 +16,7 @@ import Artigo from '../screens/ArticlesList';
 import PodCast from '../screens/PodCastScreen';
 import Store from '../screens/StoreScreen';
 import Video from '../screens/VideosScreen';
-import ArtigoView from '../screens/ArtigoViewScreen';
+import ArticleView from '../screens/ArticleView';
 import PodCastViewScreen from '../screens/PodCastViewScreen';
 import NewsList from '../components/NewsList';
 import NewsView from '../screens/NewsViewScreen';
@@ -82,7 +82,7 @@ const ArtigoStackScreen = () => (
         }}
     >
         <Stack.Screen name="Artigo" component={Artigo} />
-        <Stack.Screen name="ArtigoView" component={ArtigoView} />
+        <Stack.Screen name="ArticleView" component={ArticleView} />
     </Stack.Navigator>
 );
 
