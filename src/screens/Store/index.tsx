@@ -3,17 +3,17 @@ import { WebView } from 'react-native-webview';
 import {
     StatusBar,
     SafeAreaView,
-    StyleSheet,
     TouchableOpacity
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/AntDesign';
 
-import colors from '../assets/styles/colors';
+import colors from '../../assets/styles/colors';
+import styles from './styles';
 
 const url = 'https://www.spacetodaystore.com/';
 
-function StoreScreen() {
+const Store = () => {
     const webViewRef = useRef(null);
     const navigation = useNavigation();
 
@@ -37,22 +37,4 @@ function StoreScreen() {
     );
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    floatingButton: {
-        position: 'absolute',
-        bottom: 5,
-        margin: 10,
-        backgroundColor: '#457B9D',
-        height: 60,
-        width: 60,
-        borderRadius: 30,
-        alignItems: 'center',
-        justifyContent: 'center',
-        elevation: 10
-    }
-})
-
-export default StoreScreen;
+export default Store;

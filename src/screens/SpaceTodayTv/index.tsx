@@ -1,7 +1,6 @@
-import React, { useEffect, useState }  from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     View,
-    StyleSheet,
     Text,
     TouchableOpacity
 } from 'react-native';
@@ -9,8 +8,9 @@ import { WebView } from 'react-native-webview';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/AntDesign';
 
-import { apiScraping } from '../services/api';
-import colors from '../assets/styles/colors';
+import { apiScraping } from '../../services/api';
+import colors from '../../assets/styles/colors';
+import styles from './styles';
 
 export default function SpaceTodayTv() {
     const navigation = useNavigation<any>();
@@ -53,7 +53,7 @@ export default function SpaceTodayTv() {
                 allowsFullscreenVideo
                 allowsInlineMediaPlayback
                 mediaPlaybackRequiresUserAction
-                source={{ uri: 'https://www.youtube.com/embed/'+configuracoes}}
+                source={{ uri: 'https://www.youtube.com/embed/' + configuracoes }}
             />
         </>
     );
@@ -61,27 +61,3 @@ export default function SpaceTodayTv() {
 
 
 
-const styles = StyleSheet.create({
-    header: {
-        flexDirection: 'row',
-        height: 40,
-        backgroundColor: colors.dark_gray,
-        alignItems: 'center',
-    },
-    textHeader: {
-        color: colors.light_text,
-        fontWeight: 'bold',
-        fontSize: 20
-    },
-    containerIcon: {
-        paddingLeft: 10,
-        justifyContent: 'center',
-        height: '100%',
-        width: '20%'
-    },
-    containerText: {
-        justifyContent: 'center',
-        height: '100%',
-        width: '80%'
-    },
-});

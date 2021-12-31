@@ -14,11 +14,11 @@ import { useNavigation } from '@react-navigation/native';
 import colors from '../../assets/styles/colors';
 import styles from './styles';
 
-function LoadingIndicatorView() {
+const LoadingIndicatorView = () => {
     return <ActivityIndicator color='#009b88' size='large' />
 }
 
-function ArtigoViewScreen({ route }) {
+const ArtigoView = ({ route }) => {
     const { link } = route.params;
     const navigation = useNavigation();
 
@@ -51,4 +51,4 @@ function ArtigoViewScreen({ route }) {
     );
 }
 
-export default ArtigoViewScreen;
+export default ArtigoView;

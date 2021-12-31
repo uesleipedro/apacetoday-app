@@ -3,7 +3,6 @@ import {
     View,
     FlatList,
     ActivityIndicator,
-    StyleSheet,
     TouchableOpacity,
     Text,
     RefreshControl
@@ -11,10 +10,11 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/AntDesign';
 
-import { Load } from './Load';
-import { apiScraping } from '../services/api';
-import { CardNews } from './CardNews';
-import colors from '../assets/styles/colors';
+import { Load } from '../../components/Load';
+import { apiScraping } from '../../services/api';
+import NewsCard from './NewsCard';
+import colors from '../../assets/styles/colors';
+import styles from './styles';
 
 export default function ArtigoList() {
 
@@ -96,7 +96,7 @@ export default function ArtigoList() {
                 data={news}
                 keyExtractor={item => String(item.id)}
                 renderItem={({ item, index }) => (
-                    <CardNews
+                    <NewsCard
                         data={item}
                     />
                 )}
@@ -120,28 +120,3 @@ export default function ArtigoList() {
         </View>
     );
 }
-const styles = StyleSheet.create({
-
-    header: {
-        flexDirection: 'row',
-        height: 40,
-        backgroundColor: colors.light_gray,
-        alignItems: 'center',
-    },
-    textHeader: {
-        color: colors.white,
-        fontWeight: 'bold',
-        fontSize: 20
-    },
-    containerIcon: {
-        paddingLeft: 10,
-        justifyContent: 'center',
-        height: '100%',
-        width: '20%'
-    },
-    containerText: {
-        justifyContent: 'center',
-        height: '100%',
-        width: '80%'
-    }
-})

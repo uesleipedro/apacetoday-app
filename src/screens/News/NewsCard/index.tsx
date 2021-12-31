@@ -1,24 +1,16 @@
 import React from 'react';
 import {
     View,
-    StyleSheet,
-    Image,
     Text,
     TouchableOpacity,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import colors from '../assets/styles/colors';
-import { color } from 'react-native-reanimated';
+import colors from '../../../assets/styles/colors';
+import {CardNewsProps} from '../../../utils/types';
+import styles from './styles';
 
-interface CardNewsProps {
-    data: {
-        title: string;
-        link: string;
-    }
-}
-
-export const CardNews = ({ data }: CardNewsProps) => {
+const NewsCard = ({ data }: CardNewsProps) => {
 
     const navigation = useNavigation();
 
@@ -65,19 +57,6 @@ export const CardNews = ({ data }: CardNewsProps) => {
             </View>
         </TouchableOpacity >
     );
-}
+};
 
-
-const styles = StyleSheet.create({
-    container: {
-        flexDirection: 'row',
-        backgroundColor: colors.light_gray,
-        height: 100,
-    },
-    title: {
-        color: colors.light_text,
-        fontSize: 16,
-        fontWeight: '700',
-        paddingBottom: 20
-    },
-});
+export default NewsCard;

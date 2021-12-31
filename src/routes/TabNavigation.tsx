@@ -1,28 +1,25 @@
 import React from 'react';
-import {
-    StyleSheet,
-    Dimensions
-} from 'react-native';
+import { Dimensions } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 const windowHeight = Dimensions.get('window').height;
 
 import colors from '../assets/styles/colors';
-import Icones from '../components/PrimaryIcons';
+import TabItem from '../components/TabItem';
 import Images from '../assets';
-import Home from '../screens/HomeScreen';
+import Home from '../screens/Home';
 import Artigo from '../screens/ArticlesList';
-import PodCast from '../screens/PodCastScreen';
-import Store from '../screens/StoreScreen';
-import Video from '../screens/VideosScreen';
+import PodCast from '../screens/PodCasts';
+import Store from '../screens/Store';
+import Videos from '../screens/Videos';
 import ArticleView from '../screens/ArticleView';
-import PodCastViewScreen from '../screens/PodCastViewScreen';
-import NewsList from '../components/NewsList';
-import NewsView from '../screens/NewsViewScreen';
-import Author from '../screens/Author';
-import Lancamentos from '../screens/Lancamentos';
-import LancamentoDetalhe from '../screens/LancamentoDetalhe';
+import PodCastView from '../screens/PodCastView';
+import News from '../screens/News';
+import NewsView from '../screens/NewsView';
+import AboutAuthor from '../screens/AboutAuthor';
+import Launchs from '../screens/Launchs';
+import LaunchDetail from '../screens/LaunchDetail';
 import SpaceTodayTv from '../screens/SpaceTodayTv';
 
 const Tab = createBottomTabNavigator();
@@ -35,11 +32,11 @@ const HomeStackScreen = () => (
         }}
     >
         <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="NewsList" component={NewsList} />
+        <Stack.Screen name="News" component={News} />
         <Stack.Screen name="NewsView" component={NewsView} />
-        <Stack.Screen name="Author" component={Author} />
-        <Stack.Screen name="Lancamentos" component={Lancamentos} />
-        <Stack.Screen name="LancamentoDetalhe" component={LancamentoDetalhe} />
+        <Stack.Screen name="AboutAuthor" component={AboutAuthor} />
+        <Stack.Screen name="Launchs" component={Launchs} />
+        <Stack.Screen name="LaunchDetail" component={LaunchDetail} />
         <Stack.Screen name="SpaceTodayTv" component={SpaceTodayTv} />
     </Stack.Navigator>
 );
@@ -51,7 +48,7 @@ const PodCastStackScreen = () => (
         }}
     >
         <Stack.Screen name="PodCast" component={PodCast} />
-        <Stack.Screen name="PodCastViewScreen" component={PodCastViewScreen} />
+        <Stack.Screen name="PodCastViewScreen" component={PodCastView} />
     </Stack.Navigator>
 );
 
@@ -71,7 +68,7 @@ const VideoStackScreen = () => (
             headerShown: false
         }}
     >
-        <Stack.Screen name="Video" component={Video} />
+        <Stack.Screen name="Video" component={Videos} />
     </Stack.Navigator>
 );
 
@@ -103,7 +100,7 @@ const Tabs = () => {
             >
                 <Tab.Screen name='PodCast' component={PodCastStackScreen} options={{
                     tabBarIcon: ({ focused }) => (
-                        <Icones
+                        <TabItem
                             focused={focused}
                             name='PodCast'
                             img={Images.headset}
@@ -112,7 +109,7 @@ const Tabs = () => {
                 }} />
                 <Tab.Screen name='Store' component={StoreStackScreen} options={{
                     tabBarIcon: ({ focused }) => (
-                        <Icones
+                        <TabItem
                             focused={focused}
                             name='Store'
                             img={Images.cartShop}
@@ -122,7 +119,7 @@ const Tabs = () => {
                 }} />
                 <Tab.Screen name='Inicial' component={HomeStackScreen} options={{
                     tabBarIcon: ({ focused }) => (
-                        <Icones
+                        <TabItem
                             focused={focused}
                             name='Home'
                             img={Images.rocket}
@@ -131,7 +128,7 @@ const Tabs = () => {
                 }} />
                 <Tab.Screen name='Vídeos' component={VideoStackScreen} options={{
                     tabBarIcon: ({ focused }) => (
-                        <Icones
+                        <TabItem
                             focused={focused}
                             name='Vídeos'
                             img={Images.video}
@@ -141,7 +138,7 @@ const Tabs = () => {
                 }} />
                 <Tab.Screen name='Artigos' component={ArtigoStackScreen} options={{
                     tabBarIcon: ({ focused }) => (
-                        <Icones
+                        <TabItem
                             focused={focused}
                             name='Artigos'
                             img={Images.article}
@@ -152,9 +149,5 @@ const Tabs = () => {
         </NavigationContainer>
     )
 }
-
-const styles = StyleSheet.create({
-
-});
 
 export default Tabs;

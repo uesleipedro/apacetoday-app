@@ -11,7 +11,7 @@ export interface CardLaunchProps {
         missionType: string;
         locationName: string;
     }
-}
+};
 
 export interface CardArtigoProps {
     data: {
@@ -20,4 +20,26 @@ export interface CardArtigoProps {
         image: string;
         time: string;
     }
-}
+};
+
+export interface CardPodCastProps {
+    data: {
+        title: string;
+        image_url: string;
+        published_at: string;
+        duration: string;
+        playback_url: string;
+    }
+};
+
+export interface CardVideoProps {
+    title: string;
+    idVideo: string;
+};
+
+export interface CardNewsProps {
+    data: {
+        title: string;
+        link: string;
+    }
+};

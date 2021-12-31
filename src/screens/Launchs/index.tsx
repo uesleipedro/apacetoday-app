@@ -5,19 +5,19 @@ import {
     ActivityIndicator,
     RefreshControl,
     TouchableOpacity,
-    StyleSheet,
     Text,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
 
-import { apiScraping } from '../services/api';
-import { CardLaunch } from '../components/CardLaunch';
-import { Load } from '../components/Load';
-import colors from '../assets/styles/colors';
-import ModalBottom from '../components/ModalBottom';
+import { apiScraping } from '../../services/api';
+import CardLaunch from './CardLaunch';
+import { Load } from '../../components/Load';
+import ModalBottom from '../../components/ModalBottom';
+import colors from '../../assets/styles/colors';
+import styles from './styles/LaunchsStyles';
 
-export default function Lancamentos() {
+const Launchs = () => {
 
     const [launchs, setLaunchs] = useState<any>([]);
     const [page, setPage] = useState(1);
@@ -147,39 +147,4 @@ export default function Lancamentos() {
     );
 };
 
-const styles = StyleSheet.create({
-    header: {
-        flexDirection: 'row',
-        height: 40,
-        backgroundColor: colors.dark_gray,
-        alignItems: 'center',
-    },
-    textHeader: {
-        color: colors.light_text,
-        fontWeight: 'bold',
-        fontSize: 20
-    },
-    containerIcon: {
-        paddingLeft: 10,
-        justifyContent: 'center',
-        height: '100%',
-        width: '20%'
-    },
-    containerText: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        height: '100%',
-        width: '80%',
-        paddingRight: 10
-    },
-    infoIcon: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100%',
-        width: 50
-    }
-});
+export default Launchs;

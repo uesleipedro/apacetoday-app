@@ -4,7 +4,6 @@ import {
     View,
     ActivityIndicator,
     SafeAreaView,
-    StyleSheet,
     TouchableOpacity,
     Text
 } from 'react-native';
@@ -12,14 +11,14 @@ import { WebView } from 'react-native-webview';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
 
-import { color } from 'react-native-reanimated';
-import colors from '../assets/styles/colors';
+import colors from '../../assets/styles/colors';
+import styles from './styles';
 
 function LoadingIndicatorView() {
     return <ActivityIndicator color='#009b88' size='large' />
 }
 
-function NewsViewScreen({ route }) {
+const NewsView = ({ route }) => {
     const { link } = route.params;
     const navigation = useNavigation();
 
@@ -52,33 +51,4 @@ function NewsViewScreen({ route }) {
     );
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    header: {
-        flexDirection: 'row',
-        height: 40,
-        backgroundColor: colors.dark_gray,
-        alignItems: 'center'
-    },
-    textHeader: {
-        color: colors.white,
-        fontWeight: 'bold',
-        fontSize: 20
-    },
-    containerIcon: {
-        paddingLeft: 10,
-        justifyContent: 'center',
-        height: '100%',
-        width: '20%'
-    },
-    containerText: {
-        justifyContent: 'center',
-        height: '100%',
-        width: '80%'
-    }
-})
-
-
-export default NewsViewScreen;
+export default NewsView;

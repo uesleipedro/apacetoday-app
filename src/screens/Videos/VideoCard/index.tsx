@@ -1,21 +1,16 @@
 import React from 'react';
 import {
     View,
-    StyleSheet,
     Image,
     Linking,
     Text,
     TouchableOpacity
 } from 'react-native';
 
-import colors from '../assets/styles/colors';
+import styles from './styles';
+import { CardVideoProps } from '../../../utils/types';
 
-interface CardVideoProps {
-    title: string;
-    idVideo: string;
-}
-
-export const CardVideo = ({ title, idVideo }: CardVideoProps) => {
+const VideoCard = ({ title, idVideo }: CardVideoProps) => {
 
     return (
         <TouchableOpacity onPress={() => {
@@ -38,31 +33,6 @@ export const CardVideo = ({ title, idVideo }: CardVideoProps) => {
             </View>
         </TouchableOpacity>
     );
-}
+};
 
-const styles = StyleSheet.create({
-    container: {
-        flexDirection: 'row',
-        marginBottom: 5,
-        backgroundColor: colors.light_gray,
-    },
-    image: {
-        width: 170,
-        height: 100,
-        borderRadius: 3,
-        marginLeft: 2,
-        resizeMode: 'contain'
-    },
-    title: {
-        color: colors.light_text,
-        fontSize: 14,
-        fontWeight: '700',
-    
-    },
-    titleContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        marginLeft: 5,
-        paddingHorizontal: 5
-    }
-});
+export default VideoCard;

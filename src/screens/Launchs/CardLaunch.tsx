@@ -1,8 +1,6 @@
 import React from 'react';
 import {
     View,
-    StyleSheet,
-    Image,
     Text,
     TouchableOpacity,
 } from 'react-native';
@@ -10,18 +8,17 @@ import { format, parseISO } from "date-fns";
 import { useNavigation } from '@react-navigation/native';
 import FastImage from 'react-native-fast-image'
 
-import images from '../assets';
-import colors from '../assets/styles/colors';
-import { CardLaunchProps } from '../utils/types';
+import images from '../../assets';
+import { CardLaunchProps } from '../../utils/types';
+import styles from './styles/CardLaunchStyles';
 
-
-export const CardLaunch = ({ data }: CardLaunchProps) => {
+const CardLaunch = ({ data }: CardLaunchProps) => {
 
     const navigation = useNavigation();
 
     return (
         <TouchableOpacity
-            onPress={() => { navigation.navigate('LancamentoDetalhe', { data: data }) }}
+            onPress={() => { navigation.navigate('LaunchDetail', { data: data }) }}
         >
 
             <View style={styles.container}>
@@ -69,54 +66,8 @@ export const CardLaunch = ({ data }: CardLaunchProps) => {
             </View>
         </TouchableOpacity >
     );
-}
+};
+
+export default CardLaunch;
 
 
-const styles = StyleSheet.create({
-    container: {
-        flexDirection: 'row',
-        marginBottom: 5,
-        backgroundColor: colors.light_gray,
-    },
-    image: {
-        width: 80,
-        height: 120,
-        borderRadius: 3,
-        marginLeft: 2,
-        resizeMode: 'cover'
-    },
-    noimage: {
-        width: 80,
-        height: 120,
-        borderRadius: 3,
-        marginLeft: 2,
-        opacity: 0.7
-    },
-    text: {
-        flex: 1,
-        color: colors.light_text,
-        fontSize: 14,
-        fontWeight: '700',
-    },
-    titleContainer: {
-        flex: 3,
-        justifyContent: 'center',
-        marginLeft: 5,
-        paddingHorizontal: 5,
-        paddingBottom: 5
-    },
-    time: {
-        position: 'absolute',
-        bottom: 2,
-        marginLeft: 5
-    },
-    label: {
-        color: colors.gold_text,
-        fontSize: 14,
-        fontWeight: 'bold',
-    },
-    fieldset: {
-        display: 'flex',
-        flexDirection: 'row',
-    }
-});

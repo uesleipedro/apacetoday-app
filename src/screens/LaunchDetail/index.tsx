@@ -1,7 +1,6 @@
 import React from 'react';
 import {
     View,
-    StyleSheet,
     Text,
     ImageBackground,
     TouchableOpacity,
@@ -12,9 +11,10 @@ import { format, parseISO } from "date-fns";
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
 
-import colors from '../assets/styles/colors';
+import styles from './styles';
+import colors from '../../assets/styles/colors';
 
-const LancamentoDetalhe = ({ route }: any) => {
+const LaunchDetail = ({ route }: any) => {
     let data = route.params.data;
     const navigation = useNavigation<any>();
 
@@ -24,7 +24,7 @@ const LancamentoDetalhe = ({ route }: any) => {
                 <TouchableOpacity
                     style={styles.containerIcon}
                     onPress={() => {
-                        navigation.navigate('Lancamentos')
+                        navigation.navigate('Launchs')
                     }} >
                     <Icon name='arrowleft' size={30} color={colors.gold_text} />
                 </TouchableOpacity>
@@ -32,7 +32,7 @@ const LancamentoDetalhe = ({ route }: any) => {
                 <View style={styles.containerText}>
                     <Text
                         style={styles.textHeader}>
-                        Detalhe lançamento</Text>
+                        Detalhe do lançamento</Text>
                 </View>
             </View>
 
@@ -88,76 +88,5 @@ const LancamentoDetalhe = ({ route }: any) => {
     );
 };
 
-export default LancamentoDetalhe;
+export default LaunchDetail;
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    header: {
-        flexDirection: 'row',
-        height: 40,
-        backgroundColor: colors.dark_gray,
-        alignItems: 'center',
-    },
-    textHeader: {
-        color: colors.light_text,
-        fontWeight: 'bold',
-        fontSize: 20
-    },
-    containerIcon: {
-        paddingLeft: 10,
-        justifyContent: 'center',
-        height: '100%',
-        width: '20%'
-    },
-    containerText: {
-        justifyContent: 'center',
-        height: '100%',
-        width: '80%'
-    },
-    image: {
-        flex: 1,
-        justifyContent: "center"
-    },
-    textContainer: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'flex-end',
-        height: '100%',
-        width: '100%',
-        paddingLeft: 10,
-        paddingBottom: 20,
-    },
-    text: {
-        flex: 1,
-        color: colors.light_text,
-        fontSize: 18,
-        fontWeight: '700',
-    },
-    textDescription: {
-        color: colors.light_text,
-        fontSize: 18,
-        fontWeight: '700',
-    },
-    label: {
-        color: colors.gold_text,
-        fontSize: 18,
-        fontWeight: 'bold',
-    },
-    labelDescription: {
-        color: colors.gold_text,
-        fontSize: 18,
-        fontWeight: 'bold',
-        marginTop: 10
-    },
-    fieldset: {
-        display: 'flex',
-        flexDirection: 'row',
-    },
-    fieldsetDescricao: {
-        marginTop: 10,
-        display: 'flex',
-        flexDirection: 'column',
-    }
-});

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import {
-    View,
     FlatList,
     StatusBar,
     ActivityIndicator,
@@ -8,9 +7,9 @@ import {
 } from 'react-native';
 import axios from 'axios';
 
-import { CardPodCast } from '../components/CardPodCast';
-import { Load } from '../components/Load';
-import colors from '../assets/styles/colors';
+import CardPodCast from './CardPodCast';
+import { Load } from '../../components/Load';
+import colors from '../../assets/styles/colors';
 
 const SPACING = 10;
 const urlApi = `https://api.spreaker.com/v2/shows/4251645/episodes`
