@@ -9,26 +9,25 @@ import {
 } from 'react-native';
 
 import colors from '../../assets/styles/colors';
-import { CardArtigo } from '../../components/ArticleCard';
-import { apiScraping } from '../../services/api';
+import { ArticleCard } from './ArticleCard';
+import { api } from '../../services/api';
 import { Load } from '../../components/Load';
 import styles from './style';
 
-const ArticlesList = () => {
+const Articles = () => {
   const [articles, setArticles] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
-  const [loadingMoreArticles, setLoadingMoreArticles] = useState(false);
-  const [initialLoading, setInitialLoading] = useState(true);
+  const [loadingAnimation, setLoadingAnimation] = useState(false);
+  const [pageOpeningAnimation, setPageOpeningAnimation] = useState(true);
 
   useEffect(() => {
     fetchArticles();
   }, []);
 
   const fetchArticles = async () => {
+    setLoadingAnimation(true);
 
-    setLoadingMoreArticles(true);
-
-    await apiScraping.get(`/articles/` + pageNumber)
+    await api.get(`articles/` + pageNumber)
       .then(response => {
         setArticles([...articles, ...response.data.data]);
         setPageNumber(oldValue => oldValue + 1);
@@ -37,20 +36,19 @@ const ArticlesList = () => {
         console.error(error.message);
       })
 
-    setLoadingMoreArticles(false);
-    setInitialLoading(false);
+    setLoadingAnimation(false);
+    setPageOpeningAnimation(false);
   }
 
-  const handleFetchMoreArtigos = (scrollDistance: number) => {
+  const handleFetchNextPage = (scrollDistance: number) => {
     if (scrollDistance < 1)
       return;
 
-    setLoadingMoreArticles(true);
     fetchArticles();
   }
 
   const handleRefreshScreen = async () => {
-    await apiScraping.get(`/articles/1`)
+    await api.get(`articles/1`)
       .then(response => {
         setArticles([...response.data.data]);
         setPageNumber(oldValue => oldValue + 1);
@@ -60,7 +58,7 @@ const ArticlesList = () => {
       })
   }
 
-  if (initialLoading)
+  if (pageOpeningAnimation)
     return <Load />
 
   return (
@@ -77,18 +75,18 @@ const ArticlesList = () => {
           contentContainerStyle={{
             padding: 10,
           }}
-          renderItem={({ item, index }) => (
-            <CardArtigo
+          renderItem={({ item }) => (
+            <ArticleCard
               data={item}
             />
           )}
           showsVerticalScrollIndicator={false}
           onEndReachedThreshold={0.3}
           onEndReached={({ distanceFromEnd }) =>
-            handleFetchMoreArtigos(distanceFromEnd)
+            handleFetchNextPage(distanceFromEnd)
           }
           ListFooterComponent={
-            loadingMoreArticles
+            loadingAnimation
               ? <ActivityIndicator color={colors.gold_text} size={60} />
               : <></>
           }
@@ -105,4 +103,4 @@ const ArticlesList = () => {
   );
 }
 
-export default ArticlesList;
+export default Articles;

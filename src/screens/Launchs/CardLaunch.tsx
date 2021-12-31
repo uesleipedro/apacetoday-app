@@ -13,7 +13,6 @@ import { CardLaunchProps } from '../../utils/types';
 import styles from './styles/CardLaunchStyles';
 
 const CardLaunch = ({ data }: CardLaunchProps) => {
-
     const navigation = useNavigation();
 
     return (

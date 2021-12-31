@@ -3,24 +3,14 @@ import {
     View,
     Text,
     TouchableOpacity,
-    StyleSheet,
-    Image,
-    Dimensions
+    Image
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-const windowHeight = Dimensions.get('window').height;
 
-import colors from '../assets/styles/colors';
-
-interface PrimaryCardProps {
-    title: string;
-    icon: string;
-    screenNavigation: string,
-    iconColor: string,
-}
+import styles from './styles';
+import { PrimaryCardProps } from '../../../utils/types';
 
 export const PrimaryCard = ({ icon, title, screenNavigation, iconColor }: PrimaryCardProps) => {
-
     const navigation = useNavigation();
 
     return (
@@ -29,7 +19,6 @@ export const PrimaryCard = ({ icon, title, screenNavigation, iconColor }: Primar
             style={{ marginBottom: 15 }}
         >
             <View style={styles.container}>
-                {/* <Icon name={icon} style={styles.icon} color={'red'} /> */}
                 <Image
                     source={icon}
                     resizeMode='contain'
@@ -48,24 +37,3 @@ export const PrimaryCard = ({ icon, title, screenNavigation, iconColor }: Primar
         </TouchableOpacity>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        height: windowHeight * 0.19,
-        width: windowHeight * 0.19,
-        borderRadius: 10,
-        backgroundColor: colors.light_gray,
-        justifyContent: 'space-evenly',
-        alignItems: 'center',
-        elevation: 2,
-    },
-    title: {
-        fontSize: 17,
-        fontWeight: 'bold',
-        color: colors.white,
-        textAlign: 'center'
-    },
-    icon: {
-        fontSize: 60
-    },
-});

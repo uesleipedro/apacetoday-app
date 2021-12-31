@@ -11,26 +11,27 @@ import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/AntDesign';
 
 import { Load } from '../../components/Load';
-import { apiScraping } from '../../services/api';
+import { api } from '../../services/api';
 import NewsCard from './NewsCard';
 import colors from '../../assets/styles/colors';
 import styles from './styles';
 
-export default function ArtigoList() {
+const News = () => {
 
     const [news, setNews] = useState([]);
     const [page, setPage] = useState(1);
-    const [loadingMore, setLoadingMore] = useState(false);
-    const [loading, setLoading] = useState(true);
-    const [isRefreshing, setIsRefreshing] = useState(true);
-
+    const [loadingAnimation, setLoadingAnimation] = useState(false);
+    const [pageOpeningAnimation, setPageOpeningAnimation] = useState(true);
     const navigation = useNavigation();
 
-    async function fetchNews() {
+    useEffect(() => {
+        fetchNews();
+    }, []);
 
-        setLoadingMore(true);
+    const fetchNews = async () => {
+        setLoadingAnimation(true);
 
-        await apiScraping.get(`/externalArticles/` + page)
+        await api.get(`externalArticles/` + page)
             .then(response => {
                 setNews([...news, ...response.data.data]);
                 setPage(oldValue => oldValue + 1);
@@ -39,21 +40,20 @@ export default function ArtigoList() {
                 console.error(error.message);
             })
 
-        setLoadingMore(false);
-        setLoading(false);
+        setLoadingAnimation(false);
+        setPageOpeningAnimation(false);
     }
 
-    function handleFetchMoreNews(distance: number) {
+    const handleFetchNextPage = (distance: number) => {
         if (distance < 1)
             return;
 
-        setLoadingMore(true);
+        setLoadingAnimation(true);
         fetchNews();
     }
 
-    async function isRefreshSearch() {
-        setIsRefreshing(true);
-        await apiScraping.get(`/externalArticles/1`)
+    const handleRefreshScreen = async () => {
+        await api.get(`externalArticles/1`)
             .then(response => {
                 setNews([...response.data.data]);
                 setPage(oldValue => oldValue + 1);
@@ -61,21 +61,13 @@ export default function ArtigoList() {
             .catch(function (error) {
                 console.error(error.message);
             })
-        setIsRefreshing(false);
     }
 
-
-    useEffect(() => {
-        fetchNews();
-    }, []);
-
-    if (loading)
+    if (pageOpeningAnimation)
         return <Load />
 
     return (
-
-        <View style={{ flex: 1, backgroundColor: colors.light_gray }}>
-
+        <View style={styles.container}>
             <View style={styles.header}>
                 <TouchableOpacity
                     style={styles.containerIcon}
@@ -95,7 +87,7 @@ export default function ArtigoList() {
             <FlatList
                 data={news}
                 keyExtractor={item => String(item.id)}
-                renderItem={({ item, index }) => (
+                renderItem={({ item }) => (
                     <NewsCard
                         data={item}
                     />
@@ -103,20 +95,22 @@ export default function ArtigoList() {
                 showsVerticalScrollIndicator={false}
                 onEndReachedThreshold={0.3}
                 onEndReached={({ distanceFromEnd }) =>
-                    handleFetchMoreNews(distanceFromEnd)
+                    handleFetchNextPage(distanceFromEnd)
                 }
                 ListFooterComponent={
-                    loadingMore
+                    loadingAnimation
                         ? <ActivityIndicator color={colors.gold_text} size={60} />
                         : <></>
                 }
                 refreshControl={
                     <RefreshControl
                         refreshing={false}
-                        onRefresh={isRefreshSearch}
+                        onRefresh={handleRefreshScreen}
                     />
                 }
             />
         </View>
     );
-}
+};
+
+export default News;

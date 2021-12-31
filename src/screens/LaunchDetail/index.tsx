@@ -13,9 +13,10 @@ import { useNavigation } from '@react-navigation/native';
 
 import styles from './styles';
 import colors from '../../assets/styles/colors';
+import { CardLaunchProps } from '../../utils/types';
 
-const LaunchDetail = ({ route }: any) => {
-    let data = route.params.data;
+const LaunchDetail = ({ route }) => {
+    let { data }: CardLaunchProps = route.params;
     const navigation = useNavigation<any>();
 
     return (
@@ -32,7 +33,8 @@ const LaunchDetail = ({ route }: any) => {
                 <View style={styles.containerText}>
                     <Text
                         style={styles.textHeader}>
-                        Detalhe do lançamento</Text>
+                        Detalhe do lançamento
+                    </Text>
                 </View>
             </View>
 

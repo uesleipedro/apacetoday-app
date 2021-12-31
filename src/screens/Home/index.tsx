@@ -7,16 +7,13 @@ import {
     SafeAreaView,
     ScrollView
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 
 import Images from '../../assets';
-import { PrimaryCard } from '../../components/PrimaryCard';
+import { PrimaryCard } from './PrimaryCard';
 import colors from '../../assets/styles/colors';
 import styles from './styles';
 
 const Home = () => {
-    const navigation = useNavigation();
-
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView>

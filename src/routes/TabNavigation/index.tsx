@@ -1,45 +1,21 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 const windowHeight = Dimensions.get('window').height;
 
-import colors from '../assets/styles/colors';
-import TabItem from '../components/TabItem';
-import Images from '../assets';
-import Home from '../screens/Home';
-import Artigo from '../screens/ArticlesList';
-import PodCast from '../screens/PodCasts';
-import Store from '../screens/Store';
-import Videos from '../screens/Videos';
-import ArticleView from '../screens/ArticleView';
-import PodCastView from '../screens/PodCastView';
-import News from '../screens/News';
-import NewsView from '../screens/NewsView';
-import AboutAuthor from '../screens/AboutAuthor';
-import Launchs from '../screens/Launchs';
-import LaunchDetail from '../screens/LaunchDetail';
-import SpaceTodayTv from '../screens/SpaceTodayTv';
+import colors from '../../assets/styles/colors';
+import TabItem from '../TabItem';
+import Images from '../../assets';
+import Articles from '../../screens/Articles';
+import PodCast from '../../screens/PodCasts';
+import Store from '../../screens/Store';
+import Videos from '../../screens/Videos';
+import ArticleView from '../../screens/ArticleView';
+import PodCastView from '../../screens/PodCastView';
+import HomeStackScreen, { Stack } from '../HomeStackScreen';
 
 const Tab = createBottomTabNavigator();
-const Stack = createStackNavigator();
-
-const HomeStackScreen = () => (
-    <Stack.Navigator
-        screenOptions={{
-            headerShown: false
-        }}
-    >
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="News" component={News} />
-        <Stack.Screen name="NewsView" component={NewsView} />
-        <Stack.Screen name="AboutAuthor" component={AboutAuthor} />
-        <Stack.Screen name="Launchs" component={Launchs} />
-        <Stack.Screen name="LaunchDetail" component={LaunchDetail} />
-        <Stack.Screen name="SpaceTodayTv" component={SpaceTodayTv} />
-    </Stack.Navigator>
-);
 
 const PodCastStackScreen = () => (
     <Stack.Navigator
@@ -78,12 +54,12 @@ const ArtigoStackScreen = () => (
             headerShown: false
         }}
     >
-        <Stack.Screen name="Artigo" component={Artigo} />
+        <Stack.Screen name="Artigo" component={Articles} />
         <Stack.Screen name="ArticleView" component={ArticleView} />
     </Stack.Navigator>
 );
 
-const Tabs = () => {
+const TabNavigation = () => {
     return (
         <NavigationContainer>
             <Tab.Navigator
@@ -150,4 +126,4 @@ const Tabs = () => {
     )
 }
 
-export default Tabs;
+export default TabNavigation;

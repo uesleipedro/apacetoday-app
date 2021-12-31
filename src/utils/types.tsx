@@ -43,3 +43,10 @@ export interface CardNewsProps {
         link: string;
     }
 };
+
+export interface PrimaryCardProps {
+    title: string;
+    icon: string;
+    screenNavigation: string,
+    iconColor: string,
+};

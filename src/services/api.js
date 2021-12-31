@@ -8,3 +8,11 @@ export const apiScraping = axios.create({
         'Content-Type': 'application/json;charset=UTF-8'
     },
 });
+
+export const api = axios.create({
+    baseURL: config.API_SPACETODAY,
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json;charset=UTF-8'
+    },
+});

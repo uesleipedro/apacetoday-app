@@ -30,7 +30,7 @@ const NewsView = ({ route }) => {
                 <TouchableOpacity
                     style={styles.containerIcon}
                     onPress={() => {
-                        navigation.navigate('NewsList')
+                        navigation.navigate('News')
                     }} >
                     <Icon name='arrowleft' size={30} color={colors.gold_text} />
                 </TouchableOpacity>

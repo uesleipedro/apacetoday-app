@@ -7,15 +7,15 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import { CardArtigoProps } from '../../utils/types';
+import { CardArtigoProps } from '../../../utils/types';
 import styles from './styles';
 
-export const CardArtigo = ({ data }: CardArtigoProps) => {
+export const ArticleCard = ({ data }: CardArtigoProps) => {
     const navigation = useNavigation();
 
     return (
         <TouchableOpacity
-            onPress={() => { navigation.navigate('ArticleView', { link: data.link }) }}
+            onPress={() => { navigation.navigate('ArticleView', { pageLink: data.link }) }}
         >
 
             <View style={styles.container}>

@@ -19,7 +19,7 @@ const LoadingIndicatorView = () => {
 }
 
 const ArtigoView = ({ route }) => {
-    const { link } = route.params;
+    const { pageLink } = route.params;
     const navigation = useNavigation();
 
     return (
@@ -38,13 +38,14 @@ const ArtigoView = ({ route }) => {
                 <View style={styles.containerText}>
                     <Text
                         style={styles.textHeader}>
-                        Blog SpaceToday</Text>
+                        Blog SpaceToday
+                    </Text>
                 </View>
             </View>
 
             <WebView
                 renderLoading={LoadingIndicatorView}
-                source={{ uri: link }}
+                source={{ uri: pageLink }}
             />
         </SafeAreaView>
 

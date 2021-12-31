@@ -32,7 +32,8 @@ const AboutAuthor = () => {
                     <View style={styles.containerText}>
                         <Text
                             style={styles.textHeader}>
-                            Sobre o Autor</Text>
+                            Sobre o Autor
+                        </Text>
                     </View>
                 </View>
 

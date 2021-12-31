@@ -78,7 +78,7 @@ export default StyleSheet.create({
         backgroundColor: colors.dark_gray,
         borderRadius: 20,
         width: windowWidth * .8,
-        height: windowHeight * .2,//142,
+        height: windowHeight * .2,
         alignItems: 'center',
         justifyContent: 'center'
     },
