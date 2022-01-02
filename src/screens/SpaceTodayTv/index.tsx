@@ -8,29 +8,29 @@ import { WebView } from 'react-native-webview';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/AntDesign';
 
-import { apiScraping } from '../../services/api';
+import { api } from '../../services/api';
 import colors from '../../assets/styles/colors';
 import styles from './styles';
 
-export default function SpaceTodayTv() {
+const SpaceTodayTv = () => {
     const navigation = useNavigation<any>();
-    const [configuracoes, setConfiguracoes] = useState('');
+    const [idVideo, setIdVideo] = useState('');
+    const linkVideo = 'https://www.youtube.com/embed/';
 
-    async function fetchConfigurations() {
+    useEffect(() => {
+        fetchIdVideo();
+    }, []);
 
-        await apiScraping.get('/configuracoes/spacetoday2')
+    const fetchIdVideo = async () => {
+        await api.get('/configuracoes/spacetoday2')
             .then(response => {
-                let teste = [response.data.configuracoes]
-                setConfiguracoes(teste[0][0].value);
+                let res = [response.data.configuracoes]
+                setIdVideo(res[0][0].value);
             })
             .catch(function (error) {
                 console.error(error.message);
-            })
+            });
     }
-
-    useEffect(() => {
-        fetchConfigurations();
-    }, []);
 
     return (
         <>
@@ -53,11 +53,13 @@ export default function SpaceTodayTv() {
                 allowsFullscreenVideo
                 allowsInlineMediaPlayback
                 mediaPlaybackRequiresUserAction
-                source={{ uri: 'https://www.youtube.com/embed/' + configuracoes }}
+                source={{ uri: `${linkVideo}${idVideo}` }}
             />
         </>
     );
-}
+};
+
+export default SpaceTodayTv;
 
 
 

@@ -14,7 +14,7 @@ const NewsCard = ({ data }: CardNewsProps) => {
 
     return (
         <TouchableOpacity
-            onPress={() => { navigation.navigate('NewsView', { link: data.link }) }}
+            onPress={() => { navigation.navigate('NewsView', { pageLink: data.link }) }}
         >
 
             <View style={styles.container}>

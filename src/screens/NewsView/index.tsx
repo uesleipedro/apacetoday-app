@@ -19,7 +19,7 @@ function LoadingIndicatorView() {
 }
 
 const NewsView = ({ route }) => {
-    const { link } = route.params;
+    const { pageLink } = route.params;
     const navigation = useNavigation();
 
     return (
@@ -44,7 +44,7 @@ const NewsView = ({ route }) => {
 
             <WebView
                 renderLoading={LoadingIndicatorView}
-                source={{ uri: link }}
+                source={{ uri: pageLink }}
             />
         </SafeAreaView>
 

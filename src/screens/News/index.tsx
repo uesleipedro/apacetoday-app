@@ -17,11 +17,11 @@ import colors from '../../assets/styles/colors';
 import styles from './styles';
 
 const News = () => {
-
     const [news, setNews] = useState([]);
-    const [page, setPage] = useState(1);
+    const [pageNumber, setPageNumber] = useState(1);
     const [loadingAnimation, setLoadingAnimation] = useState(false);
     const [pageOpeningAnimation, setPageOpeningAnimation] = useState(true);
+
     const navigation = useNavigation();
 
     useEffect(() => {
@@ -31,24 +31,20 @@ const News = () => {
     const fetchNews = async () => {
         setLoadingAnimation(true);
 
-        await api.get(`externalArticles/` + page)
+        await api.get(`externalArticles/${pageNumber}`)
             .then(response => {
                 setNews([...news, ...response.data.data]);
-                setPage(oldValue => oldValue + 1);
+                setPageNumber(oldValue => oldValue + 1);
             })
             .catch(function (error) {
                 console.error(error.message);
-            })
+            });
 
         setLoadingAnimation(false);
         setPageOpeningAnimation(false);
     }
 
-    const handleFetchNextPage = (distance: number) => {
-        if (distance < 1)
-            return;
-
-        setLoadingAnimation(true);
+    const handleFetchNextPage = () => {
         fetchNews();
     }
 
@@ -56,11 +52,11 @@ const News = () => {
         await api.get(`externalArticles/1`)
             .then(response => {
                 setNews([...response.data.data]);
-                setPage(oldValue => oldValue + 1);
+                setPageNumber(oldValue => oldValue + 1);
             })
             .catch(function (error) {
                 console.error(error.message);
-            })
+            });
     }
 
     if (pageOpeningAnimation)
@@ -95,7 +91,7 @@ const News = () => {
                 showsVerticalScrollIndicator={false}
                 onEndReachedThreshold={0.3}
                 onEndReached={({ distanceFromEnd }) =>
-                    handleFetchNextPage(distanceFromEnd)
+                    distanceFromEnd > 1 && handleFetchNextPage()
                 }
                 ListFooterComponent={
                     loadingAnimation

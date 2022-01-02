@@ -5,53 +5,45 @@ import {
     ActivityIndicator,
     SafeAreaView
 } from 'react-native';
-import axios from 'axios';
 
-import CardPodCast from './CardPodCast';
+import { apiSpreaker } from '../../services/api';
 import { Load } from '../../components/Load';
+import CardPodCast from './CardPodCast';
 import colors from '../../assets/styles/colors';
 
-const SPACING = 10;
-const urlApi = `https://api.spreaker.com/v2/shows/4251645/episodes`
-
-export default function PodCastScreen() {
-
+const PodCast = () => {
     const [episodios, setEpisodios] = useState([]);
-    const [loadingMore, setLoadingMore] = useState(false);
-    const [loading, setLoading] = useState(true);
+    const [loadingAnimation, setLoadingAnimation] = useState(false);
+    const [pageOpeningAnimation, setPageOpeningAnimation] = useState(true);
 
-    async function fetchEpisodios() {
+    useEffect(() => {
+        fetchEpisodes();
+    }, []);
 
-        setLoadingMore(true);
-        await axios.get(urlApi)
+    const fetchEpisodes = async () => {
+        setLoadingAnimation(true);
+
+        await apiSpreaker.get('episodes')
             .then(response => {
                 setEpisodios([...response.data.response.items]);
             })
             .catch(function (error) {
                 console.error(error.message);
-            })
-        setLoadingMore(false);
-        setLoading(false);
+            });
+
+        setLoadingAnimation(false);
+        setPageOpeningAnimation(false);
     }
 
-    function handleFetchMoreEpisodios(distance: number) {
-        if (distance < 1)
-            return;
-
-        setLoadingMore(true);
-        fetchEpisodios();
+    const handleFetchNextPage = () => {
+        fetchEpisodes();
     }
 
-    useEffect(() => {
-        fetchEpisodios();
-    }, []);
-
-    if (loading)
+    if (pageOpeningAnimation)
         return <Load />
 
     return (
         <>
-
             <StatusBar backgroundColor={colors.dark_gray} />
             <SafeAreaView style={{ flex: 1, backgroundColor: colors.light_gray }}>
 
@@ -59,7 +51,7 @@ export default function PodCastScreen() {
                     data={episodios}
                     keyExtractor={item => String(item.episode_id)}
                     contentContainerStyle={{
-                        padding: SPACING,
+                        padding: 10,
                     }}
                     renderItem={({ item }) => (
                         <CardPodCast
@@ -69,10 +61,10 @@ export default function PodCastScreen() {
                     showsVerticalScrollIndicator={false}
                     onEndReachedThreshold={0.3}
                     onEndReached={({ distanceFromEnd }) =>
-                        handleFetchMoreEpisodios(distanceFromEnd)
+                        distanceFromEnd > 1 && handleFetchNextPage()
                     }
                     ListFooterComponent={
-                        loadingMore
+                        loadingAnimation
                             ? <ActivityIndicator color={colors.gold_text} size={60} />
                             : <></>
                     }
@@ -80,4 +72,6 @@ export default function PodCastScreen() {
             </SafeAreaView>
         </>
     );
-}
+};
+
+export default PodCast;

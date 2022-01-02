@@ -29,7 +29,7 @@ const CardPodCast = ({ data }: CardPodCastProps) => {
     return (
         <TouchableOpacity
             onPress={() => {
-                navigation.navigate('PodCastViewScreen', { link: data.playback_url })
+                navigation.navigate('PodCastViewScreen', { pageLink: data.playback_url })
             }}>
             <View style={styles.container}>
 

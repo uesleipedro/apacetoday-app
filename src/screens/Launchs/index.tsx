@@ -10,76 +10,66 @@ import {
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
 
-import { apiScraping } from '../../services/api';
-import CardLaunch from './CardLaunch';
+import { api } from '../../services/api';
 import { Load } from '../../components/Load';
+import CardLaunch from './CardLaunch';
 import ModalBottom from '../../components/ModalBottom';
 import colors from '../../assets/styles/colors';
 import styles from './styles/LaunchsStyles';
 
 const Launchs = () => {
-
     const [launchs, setLaunchs] = useState<any>([]);
-    const [page, setPage] = useState(1);
-    const [loadingMore, setLoadingMore] = useState(false);
-    const [loading, setLoading] = useState(true);
-    const [isRefreshing, setIsRefreshing] = useState(true);
+    const [pageNumber, setPageNumber] = useState(1);
+    const [loadingAnimation, setLoadingAnimation] = useState(false);
+    const [pageOpeningAnimation, setPageOpeningAnimation] = useState(true);
+    const [showModalInformation, setShowModalInformation] = useState<boolean>(false);
+
     const navigation = useNavigation<any>();
-    const [modalVisible, setModalVisible] = useState<boolean>(false);
 
     useEffect(() => {
         fetchRocketLaunch();
     }, []);
 
-    async function fetchRocketLaunch() {
-
-        setLoadingMore(true);
-
-        await apiScraping.get(`/getLaunchs/${page}`)
-            .then(response => {
-                setLaunchs([...launchs, ...response.data.launch]);
-                setPage(oldValue => oldValue + 1);
-            })
-            .catch(function (error) {
-                console.error(error.message);
-            })
-
-        setLoadingMore(false);
-        setLoading(false);
-    }
-
-
-    function handleFetchMoreLaunch(distance: number) {
-        if (distance < 1)
-            return;
-
-        setLoadingMore(true);
+    const handleFetchNextPage = () => {
         fetchRocketLaunch();
     }
 
-    async function isRefreshSearch() {
-        setIsRefreshing(true);
-        await apiScraping.get(`/getLaunchs/1`)
+    const fetchRocketLaunch = () => {
+        setLoadingAnimation(true);
+
+        api.get(`getLaunchs/${pageNumber}`)
             .then(response => {
-                setLaunchs([...response.data.launch]);
-                setPage(oldValue => oldValue + 1);
+                setLaunchs([...launchs, ...response.data.launch]);
+                setPageNumber(oldValue => oldValue + 1);
             })
             .catch(function (error) {
                 console.error(error.message);
-            })
-        setIsRefreshing(false);
+            });
+
+        setLoadingAnimation(false);
+        setPageOpeningAnimation(false);
     }
 
-    if (loading)
+    const handleRefreshScreen = async () => {
+        await api.get(`getLaunchs/1`)
+            .then(response => {
+                setLaunchs([...response.data.launch]);
+                setPageNumber(oldValue => oldValue + 1);
+            })
+            .catch(function (error) {
+                console.error(error.message);
+            });
+    }
+
+    if (pageOpeningAnimation)
         return <Load />
 
     return (
-
         <View style={{ flex: 1, backgroundColor: colors.light_gray }}>
             <ModalBottom
                 texto="Informações coletadas da API https://ll.thespacedevs.com. Todos os direitos reservados."
-                modalVisible={modalVisible}
-                setModalVisible={setModalVisible}
+                modalVisible={showModalInformation}
+                setModalVisible={setShowModalInformation}
             />
 
             <View style={styles.header}>
@@ -100,7 +90,7 @@ const Launchs = () => {
 
                     <TouchableOpacity
                         style={styles.infoIcon}
-                        onPress={() => setModalVisible(!modalVisible)}
+                        onPress={() => setShowModalInformation(!showModalInformation)}
                     >
                         <Icon
                             name="infocirlceo"
@@ -123,13 +113,13 @@ const Launchs = () => {
                     />
                 )}
                 showsVerticalScrollIndicator={false}
+                onEndReachedThreshold={0.3}
                 onEndReached={({ distanceFromEnd }) =>
-                    handleFetchMoreLaunch(distanceFromEnd)
+                    distanceFromEnd > 1 && handleFetchNextPage()
                 }
-                onEndReachedThreshold={0.6}
                 ListFooterComponent={
-                    loadingMore
-                        ? <ActivityIndicator color={colors.gold_text} size={100} />
+                    loadingAnimation
+                        ? <ActivityIndicator color={colors.gold_text} size={60} />
                         : <></>
                 }
                 initialNumToRender={10}
@@ -139,7 +129,7 @@ const Launchs = () => {
                 refreshControl={
                     <RefreshControl
                         refreshing={false}
-                        onRefresh={isRefreshSearch}
+                        onRefresh={handleRefreshScreen}
                     />
                 }
             />

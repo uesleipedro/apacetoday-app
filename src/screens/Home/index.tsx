@@ -8,8 +8,8 @@ import {
     ScrollView
 } from 'react-native';
 
-import Images from '../../assets';
 import { PrimaryCard } from './PrimaryCard';
+import Images from '../../assets';
 import colors from '../../assets/styles/colors';
 import styles from './styles';
 

@@ -5,17 +5,14 @@ import {
     SafeAreaView,
     TouchableOpacity
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/AntDesign';
 
 import colors from '../../assets/styles/colors';
 import styles from './styles';
 
-const url = 'https://www.spacetodaystore.com/';
-
 const Store = () => {
     const webViewRef = useRef(null);
-    const navigation = useNavigation();
+    const url = 'https://www.spacetodaystore.com/';
 
     const goback = () => {
         webViewRef.current.goBack();

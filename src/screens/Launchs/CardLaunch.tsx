@@ -9,11 +9,30 @@ import { useNavigation } from '@react-navigation/native';
 import FastImage from 'react-native-fast-image'
 
 import images from '../../assets';
-import { CardLaunchProps } from '../../utils/types';
 import styles from './styles/CardLaunchStyles';
+import { CardLaunchProps } from '../../utils/types';
 
 const CardLaunch = ({ data }: CardLaunchProps) => {
     const navigation = useNavigation();
+
+    const RocketImage = () => (
+        <FastImage
+            style={{ width: 80, height: 120 }}
+            source={{
+                uri: `${data.image}`,
+                priority: FastImage.priority.normal,
+            }}
+            resizeMode={FastImage.resizeMode.cover}
+        />
+    );
+
+    const NullImage = () => (
+        <FastImage
+            style={{ width: 80, height: 120 }}
+            source={images.noimage}
+            resizeMode={FastImage.resizeMode.cover}
+        />
+    );
 
     return (
         <TouchableOpacity
@@ -22,22 +41,9 @@ const CardLaunch = ({ data }: CardLaunchProps) => {
 
             <View style={styles.container}>
                 {data.image === null
-                    ? (
-                        <FastImage
-                            style={{ width: 80, height: 120 }}
-                            source={images.noimage}
-                            resizeMode={FastImage.resizeMode.cover}
-                        />
-                    ) : (
-                        <FastImage
-                            style={{ width: 80, height: 120 }}
-                            source={{
-                                uri: `${data.image}`,
-                                priority: FastImage.priority.normal,
-                            }}
-                            resizeMode={FastImage.resizeMode.cover}
-                        />
-                    )}
+                    ? NullImage()
+                    : RocketImage()
+                }
 
                 <View style={styles.titleContainer}>
                     <View style={styles.fieldset}>

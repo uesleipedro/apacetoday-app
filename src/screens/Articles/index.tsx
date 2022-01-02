@@ -8,10 +8,10 @@ import {
   RefreshControl
 } from 'react-native';
 
-import colors from '../../assets/styles/colors';
 import { ArticleCard } from './ArticleCard';
 import { api } from '../../services/api';
 import { Load } from '../../components/Load';
+import colors from '../../assets/styles/colors';
 import styles from './style';
 
 const Articles = () => {
@@ -40,10 +40,7 @@ const Articles = () => {
     setPageOpeningAnimation(false);
   }
 
-  const handleFetchNextPage = (scrollDistance: number) => {
-    if (scrollDistance < 1)
-      return;
-
+  const handleFetchNextPage = () => {
     fetchArticles();
   }
 
@@ -83,7 +80,7 @@ const Articles = () => {
           showsVerticalScrollIndicator={false}
           onEndReachedThreshold={0.3}
           onEndReached={({ distanceFromEnd }) =>
-            handleFetchNextPage(distanceFromEnd)
+            distanceFromEnd > 1 && handleFetchNextPage()
           }
           ListFooterComponent={
             loadingAnimation

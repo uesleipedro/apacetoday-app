@@ -6,65 +6,55 @@ import {
   RefreshControl
 } from 'react-native';
 
-import { apiScraping } from '../../services/api';
-import VideoCard from './VideoCard';
+import { api } from '../../services/api';
 import { Load } from '../../components/Load';
-import colors from '../../assets/styles/colors';
 import { SafeAreaView } from 'react-navigation';
+import VideoCard from './VideoCard';
+import colors from '../../assets/styles/colors';
 import styles from '../Home/styles';
 
-export default function VideoList() {
-
+const Videos = () => {
   const [videos, setVideo] = useState([]);
-  const [nextPageToken, setNextPageToken] = useState('');
-  const [page, setPage] = useState(1);
-  const [loadingMore, setLoadingMore] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [isRefreshing, setIsRefreshing] = useState(false);
-
-  async function fetchVideos() {
-    setLoadingMore(true);
-
-    await apiScraping.get(`/videos/` + page)
-      .then(response => {
-        setVideo([...videos, ...response.data.videos]);
-        setPage(oldValue => oldValue + 1);
-      })
-      .catch(function (error) {
-        console.error(error.message);
-      })
-
-    setLoadingMore(false);
-    setLoading(false);
-  }
-
-  async function isRefreshSearch() {
-    setIsRefreshing(true);
-
-    await apiScraping.get(`/videos/1`)
-      .then(response => {
-        setVideo([...response.data.videos]);
-        setPage(oldValue => oldValue + 1);
-      })
-      .catch(function (error) {
-        console.error(error.message);
-      })
-    setIsRefreshing(false);
-  }
-
-  function handleFetchMoreVideos(distance: number) {
-    if (distance < 1)
-      return;
-
-    setLoadingMore(true);
-    fetchVideos();
-  }
+  const [pageNumber, setPageNumber] = useState(1);
+  const [loadingAnimation, setLoadingAnimation] = useState(false);
+  const [pageOpeningAnimation, setPageOpeningAnimation] = useState(true);
 
   useEffect(() => {
     fetchVideos();
   }, []);
 
-  if (loading)
+  async function fetchVideos() {
+    setLoadingAnimation(true);
+
+    await api.get(`videos/${pageNumber}`)
+      .then(response => {
+        setVideo([...videos, ...response.data.videos]);
+        setPageNumber(oldValue => oldValue + 1);
+      })
+      .catch(function (error) {
+        console.error(error.message);
+      });
+
+    setLoadingAnimation(false);
+    setPageOpeningAnimation(false);
+  }
+
+  const handleRefreshScreen = async () => {
+    await api.get(`/videos/1`)
+      .then(response => {
+        setVideo([...response.data.videos]);
+        setPageNumber(oldValue => oldValue + 1);
+      })
+      .catch(function (error) {
+        console.error(error.message);
+      });
+  }
+
+  const handleFetchNextPage = () => {
+    fetchVideos();
+  }
+
+  if (pageOpeningAnimation)
     return <Load />
 
   return (
@@ -85,17 +75,17 @@ export default function VideoList() {
           showsVerticalScrollIndicator={false}
           onEndReachedThreshold={0.3}
           onEndReached={({ distanceFromEnd }) =>
-            handleFetchMoreVideos(distanceFromEnd)
+            distanceFromEnd > 1 && handleFetchNextPage()
           }
           ListFooterComponent={
-            loadingMore
+            loadingAnimation
               ? <ActivityIndicator color={colors.gold_text} size={60} />
               : <></>
           }
           refreshControl={
             <RefreshControl
               refreshing={false}
-              onRefresh={isRefreshSearch}
+              onRefresh={handleRefreshScreen}
             />
           }
         />
@@ -103,3 +93,5 @@ export default function VideoList() {
     </SafeAreaView>
   );
 };
+
+export default Videos;

@@ -15,9 +15,10 @@ import ModalBottom from '../../components/ModalBottom';
 import styles from './styles';
 
 const PodCastView = ({ route }) => {
-    const { link } = route.params;
-    const navigation = useNavigation();
     const [modalVisible, setModalVisible] = useState<boolean>(false);
+    
+    const { pageLink } = route.params;
+    const navigation = useNavigation();
 
     return (
         <SafeAreaView style={styles.container}>
@@ -53,7 +54,7 @@ const PodCastView = ({ route }) => {
             </View>
 
             <WebView
-                source={{ uri: link }}
+                source={{ uri: pageLink }}
             />
         </SafeAreaView>
     );
